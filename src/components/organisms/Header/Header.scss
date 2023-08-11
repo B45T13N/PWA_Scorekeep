@@ -1,0 +1,31 @@
+@import "../../../assets/scss/variables";
+
+header{
+  width: 100%;
+  background: #ccc;
+  height: 20vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: $base-blue;
+  .logo-app{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    img{
+      border-radius: 15px;
+    }
+  }
+
+  .app-title{
+    font-family: Barlow-SemiBoldItalic, serif;
+    font-size: 1.3rem;
+  }
+
+  .links{
+    width: 60%;
+    height: 100%;
+  }
+}
