@@ -19,6 +19,13 @@ body {
   color: $text-color;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  a{
+    text-decoration: none;
+  }
+  a:visited{
+    color: $text-color;
+  }
 }
 
 code {
