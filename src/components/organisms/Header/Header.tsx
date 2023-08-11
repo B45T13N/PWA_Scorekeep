@@ -1,6 +1,5 @@
 import './Header.scss'
 import Navbar from "../../molecules/Navbar/Navbar";
-import {slide as Menu} from "react-burger-menu";
 
 export default function Header() {
     return (
