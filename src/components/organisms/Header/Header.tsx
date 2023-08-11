@@ -1,4 +1,6 @@
 import './Header.scss'
+import Navbar from "../../molecules/Navbar/Navbar";
+import {slide as Menu} from "react-burger-menu";
 
 export default function Header() {
     return (
@@ -12,11 +14,7 @@ export default function Header() {
                 <h1>SCOREKEEP</h1>
             </div>
             <div className={"links"}>
-                <ul>
-                    <li>Accueil</li>
-                    <li>Les matchs</li>
-                    <li>Se connecter</li>
-                </ul>
+                <Navbar />
             </div>
         </header>
     )
