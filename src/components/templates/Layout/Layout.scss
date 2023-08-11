@@ -1,0 +1,41 @@
+@import "../../../assets/scss/variables";
+
+.bm-overlay{
+}
+
+.bm-menu{
+  padding: 2rem 1.5rem 0;
+}
+
+.bm-menu-wrap{
+  height: 100%;
+  font-size: 2vw;
+  background: $base-blue;
+  .bm-item-list a{
+    padding: 0.8rem;
+  }
+}
+
+.bm-item-list{
+
+  a{
+    font-size: 25px;
+  }
+}
+
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 20px;
+  top: 20px;
+}
+.bm-burger-bars{
+  background: $text-color;
+}
+
+@media(min-width: $layout-breakpoint-medium) {
+  #slide{
+    display: none;
+  }
+}
