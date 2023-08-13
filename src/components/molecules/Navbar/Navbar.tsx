@@ -1,13 +1,26 @@
 import './Navbar.scss'
+import {Navlink} from "../../atoms/Navlink/Navlink";
+interface NavlinkObject {
+    innerText: string,
+    link: string
+}
 
 export default function Navbar() {
+    const navlinks :Array<NavlinkObject> = [
+        {innerText: "Accueil",link: "/"},
+        {innerText: "Les matchs",link: "/matchs"},
+        {innerText: "Se connecter",link: "/connexion"},
+    ];
+
+    const url :string = window.location.pathname;
 
     return (
-         <nav>
+         <nav data-testid={"navbar"}>
              <ul className={"link-list"}>
-                 <li><a href="/" className={"active"}>Accueil</a></li>
-                 <li><a href="/">Les matchs</a></li>
-                 <li><a href="/">Se connecter</a></li>
+                 {navlinks.map((obj, key) =>
+                     // eslint-disable-next-line eqeqeq
+                    <li key={key}><Navlink link={obj.link} innerText={obj.innerText} isActive={url == obj.link}/></li>
+                 )}
              </ul>
          </nav>
     )

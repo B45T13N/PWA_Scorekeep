@@ -4,6 +4,6 @@ import GenericTemplate from "./Layout";
 
 test('renders template', () => {
     render(<GenericTemplate />);
-    const h1 = screen.getByText(/Hello from home/i);
+    const h1 = screen.getByText(/SCOREKEEP/i);
     expect(h1).toBeInTheDocument();
 });
