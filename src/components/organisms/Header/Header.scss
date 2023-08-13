@@ -2,7 +2,6 @@
 
 header{
   width: 100%;
-  background: #ccc;
   height: 20vh;
   display: flex;
   justify-content: space-around;
@@ -21,7 +20,7 @@ header{
 
   .app-title{
     font-family: Barlow-SemiBoldItalic, serif;
-    font-size: 1.3rem;
+    font-size: calc(9px + 2vw);
   }
 
   .links{
@@ -29,3 +28,39 @@ header{
     height: 100%;
   }
 }
+
+@media(max-width: $layout-breakpoint-medium) {
+
+  header{
+    .logo-app{
+      margin-left: 80px;
+      img{
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    .app-title{
+      width: 60%;
+      text-align: center;
+    }
+
+    .links{
+      display: none;
+    }
+  }
+
+}
+
+@media (max-width: $layout-breakpoint-small) {
+  header{
+    height: 15vh;
+    .logo-app{
+      img{
+        width: 80px;
+        height: 80px;
+      }
+    }
+  }
+}
+
