@@ -1,12 +1,12 @@
 import './Navbar.scss'
 import {Navlink} from "../../atoms/Navlink/Navlink";
-interface Navlink {
+interface NavlinkObject {
     innerText: string,
     link: string
 }
 
 export default function Navbar() {
-    const navlinks :Array<Navlink> = [
+    const navlinks :Array<NavlinkObject> = [
         {innerText: "Accueil",link: "/"},
         {innerText: "Les matchs",link: "/matchs"},
         {innerText: "Se connecter",link: "/connexion"},
