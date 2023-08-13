@@ -1,0 +1,35 @@
+@import "./assets/scss/variables";
+
+@font-face {
+  font-family: "Barlow";
+  src: local("Barlow-Regular"), url("./fonts/Barlow-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Barlow-SemiBold";
+  src: local("Barlow-SemiBold"), url("./fonts/Barlow-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Barlow-SemiBoldItalic";
+  src: local("Barlow-SemiBoldItalic"), url("./fonts/Barlow-SemiBoldItalic.ttf") format("truetype");
+}
+
+body {
+  margin: 0;
+  height: min(100vh);
+  font-family: Barlow, serif;
+  color: $text-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  a{
+    text-decoration: none;
+  }
+  a:visited{
+    color: $text-color;
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
