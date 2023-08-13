@@ -20,7 +20,7 @@ header{
 
   .app-title{
     font-family: Barlow-SemiBoldItalic, serif;
-    font-size: calc(9px + 1vw);
+    font-size: calc(5px + 1vw);
   }
 
   .links{
@@ -43,6 +43,7 @@ header{
     .app-title{
       width: 60%;
       text-align: center;
+      font-size: calc(9px + 1vw);
     }
 
     .links{

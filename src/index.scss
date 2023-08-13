@@ -15,6 +15,7 @@
 
 body {
   margin: 0;
+  height: min(100vh);
   font-family: Barlow, serif;
   color: $text-color;
   -webkit-font-smoothing: antialiased;
