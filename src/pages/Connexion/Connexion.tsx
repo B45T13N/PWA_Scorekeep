@@ -2,7 +2,7 @@ import './Connexion.scss'
 function Connexion() {
     return (
         <div className={"connexion-form"}>
-            <form action="POST">
+            <form action="">
                 <div>
                     <label htmlFor="email">Votre email</label>
                     <input type="text" id={"email"} />
