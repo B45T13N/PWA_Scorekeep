@@ -4,6 +4,6 @@ import Connexion from './Connexion';
 
 test('renders h1', () => {
     render(<Connexion />);
-    const h1 = screen.getByText(/Hello from home/i);
+    const h1 = screen.getByText(/Se connecter/i);
     expect(h1).toBeInTheDocument();
 });

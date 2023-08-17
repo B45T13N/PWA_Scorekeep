@@ -1,17 +1,58 @@
 import './Connexion.scss'
+import {Input} from "../../components/atoms/Input/Input";
+import {useState} from "react";
 import {Button} from "../../components/atoms/Button/Button";
 function Connexion() {
+    const emailErrorMessage :string = "Veuillez vérifier l'email";
+
+    const [errorMessage, setErrorMessage] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+
+    const handleSubmit = (e : React.SyntheticEvent)=> {
+        e.preventDefault();
+
+        if(!regexEmail(email)) {
+            setErrorMessage(emailErrorMessage)
+        }
+    };
+
+    const handleChangeInput = (inputValue: string, inputType :string) => {
+        switch (inputType) {
+            case "email":
+                !regexEmail(inputValue) ? setErrorMessage(emailErrorMessage) : setErrorMessage("");
+                setEmail(inputValue);
+                break;
+            case "password":
+                setPassword(inputValue);
+                break;
+            default:
+                console.log("Input non pris en charge");
+        }
+    }
+
+    const regexEmail = (email :string) => {
+        let emailReg = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/i);
+        return emailReg.test(email);
+    }
+
+
     return (
         <div className={"connexion-form"}>
-            <form action="">
-                <div>
-                    <label htmlFor="email">Votre email</label>
-                    <input type="text" id={"email"} />
+            <form action="" onSubmit={handleSubmit}>
+                <h3>Se connecter</h3>
+                <div className="error">
+                    {errorMessage}
                 </div>
+                <Input field={"email"}
+                       type={"email"}
+                       onChange={e => handleChangeInput(e.target.value, e.target.type)}/>
+                <Input field={"mot de passe"}
+                       type={"password"}
+                       onChange={e => handleChangeInput(e.target.value, e.target.type)}/>
                 <div>
-                    <label htmlFor="password">Votre mot de passe</label>
-                    <input type="password" id={"password"} />
-                </div>
+                    <input type={"button"} value={"Mot de passe oublié"}/>
+                    <input type={"submit"} value={"Valider"}/>
                 <div className={"buttons"}>
                     <Button text={"Mot de passe oublié"} type={undefined}/>
                     <Button text={"Valider"} type={"submit"}/>

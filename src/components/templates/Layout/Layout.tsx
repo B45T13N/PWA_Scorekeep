@@ -15,9 +15,9 @@ export default function Layout() {
                 </Menu>
             </div>
             <Header/>
-            <article className="content">
+            <main className="content">
                 <Outlet />
-            </article>
+            </main>
             <Footer />
         </div>
     )

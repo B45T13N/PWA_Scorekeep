@@ -5,3 +5,13 @@ $button-error-color: #CCBCAD;
 $layout-breakpoint-medium: 1024px;
 $layout-breakpoint-small: 768px;
 $layout-breakpoint-extra-small: 576px;
+$transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+$transition-duration: 0.4s;
+$label-scale-factor: calc(14 / 16);
+$floating-label__padding-horizontal: 4px;
+$padding-horizontal: 14px;
+$label-scale-width: calc(
+(
+100% - #{$padding-horizontal * 2} - #{$floating-label__padding-horizontal}
+) / var(--label-scale-factor)
+);
