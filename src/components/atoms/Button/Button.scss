@@ -1,0 +1,22 @@
+@import "../../../assets/scss/variables";
+
+button{
+  padding: 10px 5px;
+  color: $text-color;
+  border-radius: 5px;
+  transition: all 0.4s;
+  border: solid $text-color 1px;
+  &.valid{
+    background: $base-blue;
+    &:hover{
+      background: whitesmoke;
+    }
+  }
+
+  &.error{
+    background: $button-error-color;
+    &:hover{
+      background: whitesmoke;
+    }
+  }
+}

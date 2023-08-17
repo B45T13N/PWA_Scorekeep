@@ -1,6 +1,7 @@
 import './Connexion.scss'
 import {Input} from "../../components/atoms/Input/Input";
 import {useState} from "react";
+import {Button} from "../../components/atoms/Button/Button";
 function Connexion() {
     const emailErrorMessage :string = "Veuillez vérifier l'email";
 
@@ -52,6 +53,9 @@ function Connexion() {
                 <div>
                     <input type={"button"} value={"Mot de passe oublié"}/>
                     <input type={"submit"} value={"Valider"}/>
+                <div className={"buttons"}>
+                    <Button text={"Mot de passe oublié"} type={undefined}/>
+                    <Button text={"Valider"} type={"submit"}/>
                 </div>
             </form>
         </div>
