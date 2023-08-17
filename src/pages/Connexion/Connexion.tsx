@@ -1,4 +1,5 @@
 import './Connexion.scss'
+import {Button} from "../../components/atoms/Button/Button";
 function Connexion() {
     return (
         <div className={"connexion-form"}>
@@ -11,9 +12,9 @@ function Connexion() {
                     <label htmlFor="password">Votre mot de passe</label>
                     <input type="password" id={"password"} />
                 </div>
-                <div>
-                    <input type={"button"} value={"Mot de passe oublié"}/>
-                    <input type={"submit"} value={"Valider"}/>
+                <div className={"buttons"}>
+                    <Button text={"Mot de passe oublié"} type={undefined}/>
+                    <Button text={"Valider"} type={"submit"}/>
                 </div>
             </form>
         </div>
