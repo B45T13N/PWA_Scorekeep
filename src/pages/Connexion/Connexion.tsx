@@ -50,9 +50,6 @@ function Connexion() {
                 <Input field={"mot de passe"}
                        type={"password"}
                        onChange={e => handleChangeInput(e.target.value, e.target.type)}/>
-                <div>
-                    <input type={"button"} value={"Mot de passe oublié"}/>
-                    <input type={"submit"} value={"Valider"}/>
                 <div className={"buttons"}>
                     <Button text={"Mot de passe oublié"} type={undefined}/>
                     <Button text={"Valider"} type={"submit"}/>

@@ -17,11 +17,12 @@ div.connexion-form{
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-  .buttons{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    .buttons{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
   }
 
 }

@@ -1,10 +1,12 @@
 @import "../../../assets/scss/variables";
 
 button{
-  padding: 10px 5px;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 10px 7px;
   color: $text-color;
   border-radius: 5px;
-  transition: all 0.4s;
+  transition: all $transition-duration;
   border: solid $text-color 1px;
   &.valid{
     background: $base-blue;
