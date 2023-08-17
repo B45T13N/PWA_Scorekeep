@@ -1,6 +1,6 @@
 import './Connexion.scss'
 import {Input} from "../../components/atoms/Input/Input";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 function Connexion() {
     const emailErrorMessage :string = "Veuillez vérifier l'email";
 
@@ -31,7 +31,7 @@ function Connexion() {
     }
 
     const regexEmail = (email :string) => {
-        let emailReg = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/i);
+        let emailReg = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/i);
         return emailReg.test(email);
     }
 
