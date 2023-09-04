@@ -1,4 +1,5 @@
 $base-blue: #17CFE3;
+$button-hover: whitesmoke;
 $text-color: #404040;
 $card-background: #E3DCD8;
 $button-error-color: #CCBCAD;
@@ -15,3 +16,5 @@ $label-scale-width: calc(
 100% - #{$padding-horizontal * 2} - #{$floating-label__padding-horizontal}
 ) / var(--label-scale-factor)
 );
+$box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.25);
+$border-radius: 15px;
