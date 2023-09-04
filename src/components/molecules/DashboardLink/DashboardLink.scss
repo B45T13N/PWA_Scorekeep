@@ -1,0 +1,18 @@
+@import "../../../assets/scss/variables";
+
+a.dashboard-link{
+  height: 150px;
+  width: 150px;
+  background: $card-background;
+  box-shadow: $box-shadow;
+  margin: 0 auto;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+  &:hover{
+    scale: 1.2;
+  }
+}
