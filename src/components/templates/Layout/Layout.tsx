@@ -1,16 +1,12 @@
 import './Layout.scss'
-import {Outlet, useNavigate} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 import {slide as Menu} from "react-burger-menu";
 import Header from "../../organisms/Header/Header";
 import Footer from "../../organisms/Footer/Footer";
 import {useAuth} from "../../../hooks/useAuth";
 import {NavlinkObject} from "../../interfaces/NavlinkObject";
-import {Navlink} from "../../atoms/Navlink/Navlink";
-import {Logout} from "../../atoms/Logout/Logout";
 
 export default function Layout() {
-    const navigate = useNavigate();
-
     const {token, logout} = useAuth();
 
     const navlinks :Array<NavlinkObject> = [

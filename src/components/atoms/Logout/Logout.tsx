@@ -1,5 +1,4 @@
 import "./Logout.scss"
-import {useNavigate} from "react-router-dom";
 import {useAuth} from "../../../hooks/useAuth";
 
 export const Logout = () => {
