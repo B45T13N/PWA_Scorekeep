@@ -7,7 +7,7 @@ div.connexion-form{
   flex-direction: column;
   justify-content: space-evenly;
   background: $card-background;
-  border-radius: 15px;
+  border-radius: $border-radius;
   box-shadow: $box-shadow;
 
   form{
