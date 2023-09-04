@@ -31,7 +31,11 @@ export default function Layout(props: LayoutProps) {
                     {navlinks.map((obj, key) =>
                         <a key={key} href={obj.link}>{obj.innerText}</a>
                     )}
-                    {token && <a href="#" onClick={logout}>Se déconnecter</a>
+                    {token &&
+                        <a href="/dashboard">Dashboard</a>
+                    }
+                    {token &&
+                        <a href="#" onClick={logout}>Se déconnecter</a>
                     }
                 </Menu>
             </div>
