@@ -11,14 +11,15 @@ export default function Connexion() {
     const matchsURI = "/matchs";
 
     const navigate = useNavigate();
+    let isAuthenticated = sessionStorage.getItem("loggedIn") === 'true';
 
-    const { token, login } = useAuth();
+    const { login } = useAuth();
 
     useEffect(() => {
-        if(token){
+        if(isAuthenticated){
             navigate(matchsURI);
         }
-    }, [navigate, token]);
+    }, [navigate, isAuthenticated]);
 
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [email, setEmail] = useState<string>('');
