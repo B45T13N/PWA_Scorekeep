@@ -1,19 +1,42 @@
 import './Connexion.scss'
 import {Input} from "../../components/atoms/Input/Input";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Button} from "../../components/atoms/Button/Button";
-function Connexion() {
+import {useAuth} from "../../hooks/useAuth";
+import {useNavigate} from "react-router-dom";
+
+export default function Connexion() {
     const emailErrorMessage :string = "Veuillez vérifier l'email";
+    const connexionErrorMessage :string = "Email ou mot de passe incorrect";
+    const matchsURI = "/matchs";
+
+    const navigate = useNavigate();
+
+    const { token, login } = useAuth();
+
+    useEffect(() => {
+        if(token){
+            navigate(matchsURI);
+        }
+    }, [navigate, token]);
 
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
-    const handleSubmit = (e : React.SyntheticEvent)=> {
+    const handleSubmit = async (e : React.SyntheticEvent)=> {
         e.preventDefault();
 
         if(!regexEmail(email)) {
             setErrorMessage(emailErrorMessage)
+        }
+
+        let loggedIn = await login(email, password);
+
+        if(loggedIn){
+            navigate(matchsURI);
+        } else {
+            setErrorMessage(connexionErrorMessage);
         }
     };
 
@@ -59,4 +82,3 @@ function Connexion() {
     )
 }
 
-export default Connexion

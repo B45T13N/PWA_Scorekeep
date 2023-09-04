@@ -12,6 +12,7 @@ export function Input(props: InputProps) {
     const name :string = props.field === "email" ? "email" : "password";
     const [classes, setClasses] = useState<string>("")
     const [value, setValue] = useState<string>("")
+    const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
 
     const onFocus = ()  => {
         setClasses("_focused")
@@ -27,16 +28,28 @@ export function Input(props: InputProps) {
         return props.onChange(e)
     }
 
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+    };
+
     return (
         <div className={`input-container ${classes} ${value ? "_hasValue" : ""}`} data-testid={"input-test"}>
             <label htmlFor={props.field} className={"floating"} aria-label={props.field}>{label}</label>
             <input id={props.field}
-                   type={props.type}
+                   type={passwordVisible ? "text" : props.type}
                    aria-required
                    name={name} required
                    onChange={onChange}
                    onBlur={onBlur}
                    onFocus={onFocus}/>
+            {name === "password" && ( // Only show the toggle button for the password field
+                <div
+                    className="password-toggle"
+                    onClick={togglePasswordVisibility}
+                >
+                    {passwordVisible ? "Cacher" : "Afficher"}
+                </div>
+            )}
         </div>
     );
 }

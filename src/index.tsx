@@ -4,27 +4,36 @@ import ReactDOM from 'react-dom/client';
 import './index.scss';
 import reportWebVitals from './reportWebVitals';
 import Home from "./pages/Home/Home";
-import Layout from "./components/templates/Layout/Layout";
 import Connexion from './pages/Connexion/Connexion';
+import {AuthProvider} from "./hooks/useAuth";
+import Layout from "./components/templates/Layout/Layout";
+
+function App() {
+    return (
+        <AuthProvider>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<Layout />}>
+                        <Route index element={<Home />} />
+                    </Route>
+                    <Route path="/matchs" element={<Layout />}>
+                        <Route index element={<Home />} />
+                    </Route>
+                    <Route path="/connexion" element={<Layout />}>
+                        <Route index element={<Connexion />} />
+                    </Route>
+                </Routes>
+            </Router>
+        </AuthProvider>
+    );
+}
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Router>
-        <Routes>
-            <Route path={"/"} element={<Layout/>}>
-                <Route index element={<Home />}/>
-            </Route>
-            <Route path={"/matchs"} element={<Layout/>}>
-                <Route index element={<Home />}/>
-            </Route>
-            <Route path={"/connexion"} element={<Layout/>}>
-                <Route index element={<Connexion />}/>
-            </Route>
-        </Routes>
-    </Router>
+      <App />
   </React.StrictMode>
 );
 
