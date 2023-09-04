@@ -1,6 +1,4 @@
 import './Dashboard.scss'
-import {useAuth} from "../../hooks/useAuth";
-import {useNavigate} from "react-router-dom";
 import {DashboardLink} from "../../components/molecules/DashboardLink/DashboardLink";
 
 interface DashboardLinks {
