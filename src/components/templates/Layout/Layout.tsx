@@ -1,12 +1,17 @@
 import './Layout.scss'
-import {Outlet} from "react-router-dom";
+import {Navigate, Outlet} from "react-router-dom";
 import {slide as Menu} from "react-burger-menu";
 import Header from "../../organisms/Header/Header";
 import Footer from "../../organisms/Footer/Footer";
 import {useAuth} from "../../../hooks/useAuth";
 import {NavlinkObject} from "../../interfaces/NavlinkObject";
 
-export default function Layout() {
+interface LayoutProps {
+    isAuthenticated?: boolean;
+}
+
+
+export default function Layout(props: LayoutProps) {
     const {token, logout} = useAuth();
 
     const navlinks :Array<NavlinkObject> = [
@@ -32,7 +37,7 @@ export default function Layout() {
             </div>
             <Header />
             <main className="content">
-                <Outlet />
+                {props.isAuthenticated !== false ? <Outlet/> : <Navigate to="/"/>}
             </main>
             <Footer />
         </div>
