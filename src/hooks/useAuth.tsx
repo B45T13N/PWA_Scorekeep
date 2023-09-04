@@ -38,7 +38,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             });
 
             if (response.status === 200) {
-                const token = `Authorization ${response.data["token_type"]} ${response.data["access_token"]}`;
+                const token = `${response.data["access_token"]}`;
                 setToken(token);
                 sessionStorage.setItem('token', token);
                 sessionStorage.setItem('loggedIn', 'true');
@@ -56,7 +56,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     const logout = () => {
         apiClient.post('/api/logout').then(response => {
-            if (response.status === 204) {
+            if (response.status === 200) {
                 sessionStorage.setItem('loggedIn', 'false');
                 setToken(null);
                 sessionStorage.removeItem('token');
