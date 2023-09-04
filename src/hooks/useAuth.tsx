@@ -1,9 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import apiClient from "../services/apiClient";
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
 
-// Define the type for your authentication context
 interface AuthContextType {
     token: string | null;
     login: (email: string, password: string) => Promise<boolean>;
