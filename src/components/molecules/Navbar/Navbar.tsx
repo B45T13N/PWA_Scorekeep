@@ -26,9 +26,14 @@ export default function Navbar() {
                     <li key={key}><Navlink link={obj.link} innerText={obj.innerText} isActive={url === obj.link}/></li>
                  )}
                  {token &&
-                    <li>
-                        <Logout />
-                    </li>
+                     (<>
+                         <li>
+                             <Navlink link={"/dashboard"} innerText={"Dashboard"} isActive={url === "/dashboard"}/>
+                         </li>
+                         <li>
+                             <Logout />
+                         </li>
+                     </>)
                  }
              </ul>
          </nav>
