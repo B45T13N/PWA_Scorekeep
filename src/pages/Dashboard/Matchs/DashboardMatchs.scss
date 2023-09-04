@@ -1,0 +1,56 @@
+@import "../../../assets/scss/variables";
+
+article.dashboard-matchs{
+  min-height: 60vh;
+  width: 90%;
+  text-align: center;
+  background: $card-background;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+
+  section.content{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    div.add-match-button{
+      width: 90%;
+      display: flex;
+      justify-content: end;
+    }
+
+    table {
+      width: 90%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background-color: #f2f2f2;
+
+      th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ccc;
+      }
+
+      tr:hover {
+        background-color: #e1e1e1;
+      }
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: $base-blue;
+      color: $text-color;
+      border: none;
+      cursor: pointer;
+      transition: background-color $transition-duration;
+      font-weight: bold;
+      &:hover {
+        background-color: $button-hover;
+      }
+    }
+  }
+
+
+}

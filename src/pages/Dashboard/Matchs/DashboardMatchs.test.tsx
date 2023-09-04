@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Matchs from './Matchs';
+import DashboardMatchs from './DashboardMatchs';
 
 test('renders h1', () => {
-    render(<Matchs />);
-    const h1 = screen.getByText(/Hello from matchs/i);
+    render(<DashboardMatchs />);
+    const h1 = screen.getByText(/matchs dashboard/i);
     expect(h1).toBeInTheDocument();
 });
