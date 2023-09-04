@@ -10,9 +10,8 @@ import Layout from "./components/templates/Layout/Layout";
 import Dashboard from "./pages/Dashboard/Dashboard";
 
 function App() {
-    const {token} = useAuth();
 
-    let isAuthenticated = !!token;
+    let isAuthenticated = sessionStorage.getItem("loggedIn") === 'true';
 
     return (
             <Router>

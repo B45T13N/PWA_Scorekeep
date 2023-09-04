@@ -5,13 +5,13 @@ import {Logout} from "../../atoms/Logout/Logout";
 import {NavlinkObject} from "../../interfaces/NavlinkObject";
 
 export default function Navbar() {
-    const {token} = useAuth();
+    let isAuthenticated = sessionStorage.getItem("loggedIn") === 'true';
 
     const navlinks :Array<NavlinkObject> = [
         {innerText: "Accueil",link: "/"},
         {innerText: "Les matchs",link: "/matchs"},
     ];
-    if(!token){
+    if(!isAuthenticated){
         navlinks.push(
             {innerText: "Se connecter",link: "/connexion"}
         )
@@ -25,7 +25,7 @@ export default function Navbar() {
                  {navlinks.map((obj, key) =>
                     <li key={key}><Navlink link={obj.link} innerText={obj.innerText} isActive={url === obj.link}/></li>
                  )}
-                 {token &&
+                 {isAuthenticated &&
                      (<>
                          <li>
                              <Navlink link={"/dashboard"} innerText={"Dashboard"} isActive={url === "/dashboard"}/>

@@ -1,72 +1,83 @@
-import React, { createContext, useContext, useState } from 'react';
-import apiClient from "../services/apiClient";
+    import React, { createContext, useContext } from 'react';
+    import apiClient from "../services/apiClient";
+    import {useNavigate} from "react-router-dom";
 
-interface AuthContextType {
-    token: string | null;
-    login: (email: string, password: string) => Promise<boolean>;
-    logout: () => void;
-}
-
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
-export const useAuth = (): AuthContextType => {
-    const context = useContext(AuthContext);
-    if (!context) {
-        throw new Error('useAuth must be used within an AuthProvider');
+    interface AuthContextType {
+        login: (email: string, password: string) => Promise<boolean>;
+        logout: () => void;
+        me: () => void;
     }
-    return context;
-};
 
-interface AuthProviderProps {
-    children: React.ReactNode;
-}
+    const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-    const [token, setToken] = useState<string | null>(
-        sessionStorage.getItem('token') || null
-    );
+    export const useAuth = (): AuthContextType => {
+        const context = useContext(AuthContext);
+        if (!context) {
+            throw new Error('useAuth must be used within an AuthProvider');
+        }
+        return context;
+    };
 
-    const login = async (email: string, password: string) => {
-        try {
-            // First, get the CSRF cookie
-            await apiClient.get('/sanctum/csrf-cookie');
+    interface AuthProviderProps {
+        children: React.ReactNode;
+    }
 
-            // Then, send the login request
-            const response = await apiClient.post('/api/login', {
-                email: email,
-                password: password,
-            });
+    export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
-            if (response.status === 200) {
-                const token = `${response.data["access_token"]}`;
-                setToken(token);
-                sessionStorage.setItem('token', token);
-                sessionStorage.setItem('loggedIn', 'true');
-                return true;
-            } else {
+        const login = async (email: string, password: string) => {
+            try {
+                // First, get the CSRF cookie
+                await apiClient.get('/sanctum/csrf-cookie');
+
+                // Then, send the login request
+                const response = await apiClient.post('/api/login', {
+                    email: email,
+                    password: password,
+                });
+
+                if (response.status === 200) {
+                    sessionStorage.setItem('loggedIn', 'true');
+                    return true;
+                } else {
+                    sessionStorage.setItem('loggedIn', 'false');
+                    return false;
+                }
+            } catch (error) {
                 sessionStorage.setItem('loggedIn', 'false');
                 return false;
             }
-        } catch (error) {
-            sessionStorage.setItem('loggedIn', 'false');
-            return false;
-        }
-    };
+        };
 
+        const logout = () => {
+            apiClient.post('/api/logout').then(response => {
+                if (response.status === 200) {
+                    sessionStorage.setItem('loggedIn', 'false');
+                    document.location = "/";
+                }
+            });
 
-    const logout = () => {
-        apiClient.post('/api/logout').then(response => {
-            if (response.status === 200) {
+        };
+
+        const me = async () => {
+            try{
+                await apiClient.post('/api/me').then(response => {
+                    if (response.status === 200) {
+                        console.log(response)
+                        sessionStorage.setItem('loggedIn', 'true');
+                    } else {
+                        sessionStorage.setItem('loggedIn', 'false');
+                    }
+                });
+            } catch (error) {
                 sessionStorage.setItem('loggedIn', 'false');
-                setToken(null);
-                sessionStorage.removeItem('token');
             }
-        });
-    };
+        };
 
-    return (
-        <AuthContext.Provider value={{ token, login, logout }}>
-            {children}
-        </AuthContext.Provider>
-    );
-};
+        me();
+
+        return (
+            <AuthContext.Provider value={{ login, logout, me }}>
+                {children}
+            </AuthContext.Provider>
+        );
+    };

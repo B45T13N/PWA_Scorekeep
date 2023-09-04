@@ -12,13 +12,14 @@ interface LayoutProps {
 
 
 export default function Layout(props: LayoutProps) {
-    const {token, logout} = useAuth();
+    const {logout} = useAuth();
+    let isAuthenticated = sessionStorage.getItem("loggedIn") === 'true';
 
     const navlinks :Array<NavlinkObject> = [
         {innerText: "Accueil",link: "/"},
         {innerText: "Les matchs",link: "/matchs"},
     ];
-    if(!token){
+    if(!isAuthenticated){
         navlinks.push(
             {innerText: "Se connecter",link: "/connexion"}
         )
@@ -31,10 +32,10 @@ export default function Layout(props: LayoutProps) {
                     {navlinks.map((obj, key) =>
                         <a key={key} href={obj.link}>{obj.innerText}</a>
                     )}
-                    {token &&
+                    {isAuthenticated &&
                         <a href="/dashboard">Dashboard</a>
                     }
-                    {token &&
+                    {isAuthenticated &&
                         <a href="#" onClick={logout}>Se déconnecter</a>
                     }
                 </Menu>
