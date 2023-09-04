@@ -1,77 +1,75 @@
-import {createContext, useContext, useState} from "react";
+import React, { createContext, useContext, useState } from 'react';
+import apiClient from "../services/apiClient";
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
 
-const authContext = createContext<ProvideAuth | null>(null);
-
-export function ProvideAuth({children}){
-    const auth = useProvideAuth();
-
-    return <authContext.Provider value={auth}>{children}</authContext.Provider>
+// Define the type for your authentication context
+interface AuthContextType {
+    token: string | null;
+    login: (email: string, password: string) => Promise<boolean>;
+    logout: () => void;
 }
 
-export const useAuth = () => {
-    return useContext(authContext);
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export const useAuth = (): AuthContextType => {
+    const context = useContext(AuthContext);
+    if (!context) {
+        throw new Error('useAuth must be used within an AuthProvider');
+    }
+    return context;
+};
+
+interface AuthProviderProps {
+    children: React.ReactNode;
 }
 
-function useProvideAuth(){
-    const [user, setUser] = useState(null);
-    const [errors, setErrors] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+    const [token, setToken] = useState<string | null>(
+        sessionStorage.getItem('token') || null
+    );
 
-    function signIn(email: string, password: string){
-        setIsLoading(true);
-        let loginUrl = `${process.env.API_SCOREKEEP_URL} + /api/login`;
+    const login = async (email: string, password: string) => {
+        try {
+            // First, get the CSRF cookie
+            await apiClient.get('/sanctum/csrf-cookie');
 
-        fetch(loginUrl,{
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({email, password})
-        }).then((response) => {
-            setIsLoading(false);
-            if(response.ok){
-                response.json().then(data => console.log(data));
-            }else{
-                response.json().then((err) => setErrors(err));
-           }
-        })
-    }
+            // Then, send the login request
+            const response = await apiClient.post('/api/login', {
+                email: email,
+                password: password,
+            });
 
-    function signOut(){
-        let logoutUrl = `${process.env.API_SCOREKEEP_URL} + /api/logout`;
-
-        fetch(logoutUrl, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(user)
-        }).then((response) => {
-            if(response.ok){
-                setUser(null);
-            }else{
-                response.json().then((err) => setErrors(err));
+            if (response.status === 200) {
+                const token = `Authorization ${response.data["token_type"]} ${response.data["access_token"]}`;
+                setToken(token);
+                sessionStorage.setItem('token', token);
+                sessionStorage.setItem('loggedIn', 'true');
+                return true;
+            } else {
+                sessionStorage.setItem('loggedIn', 'false');
+                return false;
             }
-        })
-    }
-
-    function autoSignIn(){
-        let autoSignInUrl = `${process.env.API_SCOREKEEP_URL} + /api/me`;
-
-        fetch(autoSignInUrl).then((response) => {
-            if(response.ok){
-                response.json().then((user) => setUser(user));
-            }else{
-                response.json().then((err) => setErrors(err));
-            }
-        })
-    }
-
-    return {
-        user,
-        errors,
-        signIn,
-        signOut,
-        autoSignIn
+        } catch (error) {
+            sessionStorage.setItem('loggedIn', 'false');
+            return false;
+        }
     };
-}
+
+
+    const logout = () => {
+        apiClient.post('/api/logout').then(response => {
+            if (response.status === 204) {
+                sessionStorage.setItem('loggedIn', 'false');
+                setToken(null);
+                sessionStorage.removeItem('token');
+            }
+        });
+    };
+
+    return (
+        <AuthContext.Provider value={{ token, login, logout }}>
+            {children}
+        </AuthContext.Provider>
+    );
+};
