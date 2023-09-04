@@ -34,10 +34,6 @@ header{
   header{
     .logo-app{
       margin-left: 80px;
-      img{
-        width: 120px;
-        height: 120px;
-      }
     }
 
     .app-title{
@@ -54,13 +50,5 @@ header{
 }
 
 @media (max-width: $layout-breakpoint-small) {
-  header{
-    .logo-app{
-      img{
-        width: 80px;
-        height: 80px;
-      }
-    }
-  }
 }
 
