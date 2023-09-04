@@ -2,7 +2,6 @@ import './Navbar.scss'
 import {Navlink} from "../../atoms/Navlink/Navlink";
 import {useAuth} from "../../../hooks/useAuth";
 import {Logout} from "../../atoms/Logout/Logout";
-import {useEffect} from "react";
 import {NavlinkObject} from "../../interfaces/NavlinkObject";
 
 export default function Navbar() {
