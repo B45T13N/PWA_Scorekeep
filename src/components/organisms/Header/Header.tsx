@@ -6,7 +6,7 @@ export default function Header() {
         <header>
             <div className="logo-app">
                 <a href="/">
-                    <img src={"/logo192.png"} alt={"Logo de l'application Scorekeep"} width={120} height={120} />
+                    <img src={"/logo192.png"} alt={"Logo de l'application Scorekeep"} width={80} height={80} />
                 </a>
             </div>
             <div className={"app-title"}>
