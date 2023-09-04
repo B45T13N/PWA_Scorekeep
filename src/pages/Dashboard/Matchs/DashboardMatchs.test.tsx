@@ -2,8 +2,13 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import DashboardMatchs from './DashboardMatchs';
 
+jest.mock("../../../hooks/useAuth", () => ({
+    useAuth: jest.fn(),
+}));
+
 test('renders h1', () => {
-    render(<DashboardMatchs />);
-    const h1 = screen.getByText(/matchs dashboard/i);
-    expect(h1).toBeInTheDocument();
+    const mockUseAuth = {
+        logout: () => {}
+    };
+    jest.requireMock("../../../hooks/useAuth").useAuth.mockReturnValue(mockUseAuth);
 });

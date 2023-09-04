@@ -4,6 +4,6 @@ import {DashboardLink} from "./DashboardLink";
 
 test('renders link', () => {
     render(<DashboardLink innerText={"link"} link={"/matchs"}/>);
-    const dashboardLink = screen.getByTestId(/link/i);
+    const dashboardLink = screen.getByText(/link/i);
     expect(dashboardLink).toBeInTheDocument();
 });
