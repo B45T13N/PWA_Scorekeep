@@ -8,6 +8,7 @@ import Connexion from './pages/Connexion/Connexion';
 import {AuthProvider, useAuth} from "./hooks/useAuth";
 import Layout from "./components/templates/Layout/Layout";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import DashboardMatchs from "./pages/Dashboard/Matchs/DashboardMatchs";
 
 function App() {
 
@@ -27,6 +28,9 @@ function App() {
                     </Route>
                     <Route path="/dashboard" element={<Layout isAuthenticated={isAuthenticated} />}>
                         <Route index element={<Dashboard /> }/>
+                    </Route>
+                    <Route path="/dashboard/matchs" element={<Layout isAuthenticated={isAuthenticated} />}>
+                        <Route index element={<DashboardMatchs /> }/>
                     </Route>
                 </Routes>
             </Router>
