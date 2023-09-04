@@ -5,12 +5,16 @@ import './index.scss';
 import reportWebVitals from './reportWebVitals';
 import Home from "./pages/Home/Home";
 import Connexion from './pages/Connexion/Connexion';
-import {AuthProvider} from "./hooks/useAuth";
+import {AuthProvider, useAuth} from "./hooks/useAuth";
 import Layout from "./components/templates/Layout/Layout";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 function App() {
+    const {token} = useAuth();
+
+    let isAuthenticated = !!token;
+
     return (
-        <AuthProvider>
             <Router>
                 <Routes>
                     <Route path="/" element={<Layout />}>
@@ -22,9 +26,11 @@ function App() {
                     <Route path="/connexion" element={<Layout />}>
                         <Route index element={<Connexion />} />
                     </Route>
+                    <Route path="/dashboard" element={<Layout isAuthenticated={isAuthenticated} />}>
+                        <Route index element={<Dashboard /> }/>
+                    </Route>
                 </Routes>
             </Router>
-        </AuthProvider>
     );
 }
 
@@ -33,7 +39,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-      <App />
+      <AuthProvider>
+          <App />
+      </AuthProvider>
   </React.StrictMode>
 );
 
