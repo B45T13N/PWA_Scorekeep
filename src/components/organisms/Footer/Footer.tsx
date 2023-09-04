@@ -6,7 +6,7 @@ interface FooterLinkProps {
     innerText: string
 }
 
-export const Footer = () => {
+export default function Footer () {
     const footerLinks :Array<FooterLinkProps> = [
         {link: "/about", innerText: "A propos"},
         {link: "/contact", innerText: "Nous contacter"},
@@ -21,7 +21,7 @@ export const Footer = () => {
                 )}
             </div>
             <div className={"copyright"}>
-                <h5>Tous droits réservés - &copy; Bastien DA SILVA</h5>
+                <h5>Tous droits réservés - &copy; DoWeDev</h5>
             </div>
         </footer>
     );
