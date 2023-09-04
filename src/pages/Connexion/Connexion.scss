@@ -1,7 +1,7 @@
 @import "../../assets/scss/variables";
 
 div.connexion-form{
-  width: min(40vw, 500px);
+  width: min(80vw, 500px);
   height: 400px;
   display: flex;
   flex-direction: column;
@@ -25,4 +25,18 @@ div.connexion-form{
     }
   }
 
+}
+
+@media (max-width : $layout-breakpoint-extra-small) {
+  div.connexion-form{
+    form{
+      .buttons{
+        flex-direction: column;
+        width: 80%;
+        button{
+          margin-top: 5px;
+        }
+      }
+    }
+  }
 }
