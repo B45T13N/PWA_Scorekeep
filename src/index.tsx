@@ -5,7 +5,7 @@ import './index.scss';
 import reportWebVitals from './reportWebVitals';
 import Home from "./pages/Home/Home";
 import Connexion from './pages/Connexion/Connexion';
-import {AuthProvider} from "./hooks/useAuth";
+import {AuthProvider} from "./hooks/useAuth/useAuth";
 import Layout from "./components/templates/Layout/Layout";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import DashboardMatchs from "./pages/Dashboard/Matchs/DashboardMatchs";

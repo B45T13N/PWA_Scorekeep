@@ -2,7 +2,7 @@ import './Connexion.scss'
 import {Input} from "../../components/atoms/Input/Input";
 import {useEffect, useState} from "react";
 import {Button} from "../../components/atoms/Button/Button";
-import {useAuth} from "../../hooks/useAuth";
+import {useAuth} from "../../hooks/useAuth/useAuth";
 import {useNavigate} from "react-router-dom";
 
 export default function Connexion() {

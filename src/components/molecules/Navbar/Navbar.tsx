@@ -1,7 +1,7 @@
 import './Navbar.scss'
 import {Navlink} from "../../atoms/Navlink/Navlink";
 import {Logout} from "../../atoms/Logout/Logout";
-import {NavlinkObject} from "../../interfaces/NavlinkObject";
+import {NavlinkObject} from "../../../interfaces/NavlinkObject";
 
 export default function Navbar() {
     let isAuthenticated = sessionStorage.getItem("loggedIn") === 'true';

@@ -3,8 +3,8 @@ import {Navigate, Outlet} from "react-router-dom";
 import {slide as Menu} from "react-burger-menu";
 import Header from "../../organisms/Header/Header";
 import Footer from "../../organisms/Footer/Footer";
-import {useAuth} from "../../../hooks/useAuth";
-import {NavlinkObject} from "../../interfaces/NavlinkObject";
+import {useAuth} from "../../../hooks/useAuth/useAuth";
+import {NavlinkObject} from "../../../interfaces/NavlinkObject";
 
 interface LayoutProps {
     isAuthenticated?: boolean;
