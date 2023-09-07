@@ -3,18 +3,19 @@ import { Link } from 'react-router-dom';
 import useApi from '../../../hooks/useApi/useApi';
 import './DashboardMatchs.scss';
 import {Match} from "../../../interfaces/Match";
+import moment from "moment";
 
 export default function DashboardMatchs() {
     const apiUrl = `${process.env.REACT_APP_API_SCOREKEEP_URL}/api/games`;
-    const [matchs, setMatchs] = useState([]);
     // Use the useApi hook to fetch data
     const { data, error, callApi } = useApi();
 
     useEffect(() => {
         // Call the API when the component mounts
         callApi(apiUrl);
-        setMatchs(Array.isArray(data) ? data : []);
+
     }, [apiUrl, callApi]);
+
     return (
         <article className="dashboard-matchs">
             <h1>Matchs Dashboard</h1>
@@ -35,9 +36,9 @@ export default function DashboardMatchs() {
                     </tr>
                     </thead>
                     <tbody>
-                    {matchs.map((match: Match) => (
+                    {data.map((match: Match) => (
                         <tr key={match.id}>
-                            <td>{match.id}</td>
+                            <td>{(moment(match.gameDate)).format("DD/MM/YYYY HH:mm")}</td>
                             <td>{match.visitorTeam.name}</td>
                             <td>{match.category}</td>
                             <td>
