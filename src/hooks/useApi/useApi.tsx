@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from 'react';
+import {useState, useEffect} from 'react';
 import axios from "axios";
 
 export default function useApi() {
@@ -16,6 +16,7 @@ export default function useApi() {
                 setData(response.data.data); // Use response.data to get the data
             })
             .catch((error) => {
+                console.log(error);
                 setError(true);
             });
     }, [apiUrl]);

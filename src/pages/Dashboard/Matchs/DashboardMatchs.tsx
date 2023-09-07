@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import useApi from '../../../hooks/useApi/useApi';
 import './DashboardMatchs.scss';
@@ -36,6 +36,7 @@ export default function DashboardMatchs() {
                     </tr>
                     </thead>
                     <tbody>
+                    {error && <h2>Erreur lors de la récupération des matchs</h2>}
                     {data.map((match: Match) => (
                         <tr key={match.id}>
                             <td>{(moment(match.gameDate)).format("DD/MM/YYYY HH:mm")}</td>
