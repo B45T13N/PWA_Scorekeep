@@ -4,7 +4,7 @@ import Navbar from "../../molecules/Navbar/Navbar";
 export default function Header() {
     return (
         <header>
-            <div className="logo-app">
+            <div className="logo-app hidden-xs">
                 <a href="/">
                     <img src={"/logo192.png"} alt={"Logo de l'application Scorekeep"} width={80} height={80} />
                 </a>

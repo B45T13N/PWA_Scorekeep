@@ -1,5 +1,5 @@
     import React, { createContext, useContext } from 'react';
-    import apiClient from "../services/apiClient";
+    import apiClient from "../../services/apiClient";
 
     interface AuthContextType {
         login: (email: string, password: string) => Promise<boolean>;
@@ -61,7 +61,6 @@
             try{
                 await apiClient.post('/api/me').then(response => {
                     if (response.status === 200) {
-                        console.log(response)
                         sessionStorage.setItem('loggedIn', 'true');
                     } else {
                         sessionStorage.setItem('loggedIn', 'false');
