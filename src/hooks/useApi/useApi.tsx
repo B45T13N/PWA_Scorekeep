@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default function useApi() {
     const [error, setError] = useState(false);
-    const [apiUrl, setApiUrl] = useState("");
+    const [apiUrl, setApiUrl] = useState<string>();
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -11,14 +11,17 @@ export default function useApi() {
             'Scorekeep-API-Key': process.env.REACT_APP_API_SCOREKEEP_KEY,
         };
 
-        axios.get(apiUrl, {headers}) // Use Axios for GET request
-            .then((response) => {
-                setData(response.data.data); // Use response.data to get the data
-            })
-            .catch((error) => {
-                console.log(error);
-                setError(true);
-            });
+        if (apiUrl != null) {
+            axios.get(apiUrl, {headers}) // Use Axios for GET request
+                .then((response) => {
+                    setData(response.data.data); // Use response.data to get the data
+                })
+                .catch((error) => {
+                    console.log(error);
+                    setError(true);
+                });
+        }
     }, [apiUrl]);
+
     return { data, error, callApi: setApiUrl };
 }
