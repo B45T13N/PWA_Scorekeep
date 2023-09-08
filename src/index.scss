@@ -33,3 +33,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@media(max-width: $layout-breakpoint-small){
+  .hidden-s{
+    display: none;
+  }
+  table{
+    font-size: 0.8em;
+    button{
+      font-size: 0.9em;
+    }
+  }
+}
+
+@media(max-width: $layout-breakpoint-extra-small){
+  .hidden-xs{
+    display: none !important;
+  }
+}
