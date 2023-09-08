@@ -2,6 +2,7 @@
 
 article.dashboard-matchs{
   min-height: 60vh;
+  margin: 20px 0;
   width: 90%;
   text-align: center;
   background: $card-background;
@@ -29,8 +30,11 @@ article.dashboard-matchs{
 
       th, td {
         padding: 10px;
-        text-align: left;
         border-bottom: 1px solid #ccc;
+      }
+
+      td{
+        text-align: left;
       }
 
       tr:hover {
@@ -39,15 +43,16 @@ article.dashboard-matchs{
     }
 
     button {
-      padding: 10px 20px;
-      background-color: $base-blue;
+      padding: 5px 10px;
+      border: solid 1px $base-blue;
       color: $text-color;
-      border: none;
+      background: $button-hover;
       cursor: pointer;
-      transition: background-color $transition-duration;
+      transition: all $transition-duration;
       font-weight: bold;
       &:hover {
-        background-color: $button-hover;
+        background-color: $base-blue;
+        border-color: $button-hover;
       }
     }
   }
