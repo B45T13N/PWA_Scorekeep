@@ -15,4 +15,6 @@ export interface Match {
     roomManager?: RoomManager,
     localTeam: LocalTeam,
     visitorTeam: VisitorTeam,
+    visitorTeamName?: string,
+    localTeamId?: number
 }
