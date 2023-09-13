@@ -125,7 +125,7 @@ export default function UpdateMatch() {
                 <div>
                     <Input onChange={handleAddressChange} type={"text"} field={"Adresse"} value={address} />
                     {errors.CPO && <span className="error">{errors.CPO}</span>}
-                    <Input onChange={handlePostalCodeChange} type={"text"} field={"Code postal"} value={CPO}/>
+                    <Input onChange={handlePostalCodeChange} type={"text"} field={"Code postal"} maxLength={5} value={CPO}/>
                     <Input onChange={handleCityChange} type={"text"} field={"Ville"} value={city} />
                 </div>
                 <div className={"btn-form"}>

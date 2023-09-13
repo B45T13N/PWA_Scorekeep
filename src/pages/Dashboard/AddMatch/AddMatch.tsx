@@ -8,11 +8,11 @@ import ReactDatePicker, {registerLocale} from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import fr from "date-fns/locale/fr";
 import {Switch} from "../../../components/atoms/Switch/Switch";
+import moment from "moment";
 
 registerLocale("fr", fr);
 
 export default function AddMatch() {
-    const [matchData, setMatchData] = useState<Match | null>(null);
     const [formData, setFormData] = useState<Partial<Match>>({});
     const [visitorTeamName, setVisitorTeamName] = useState<string>("");
     const [isHomeMatch, setIsHomeMatch] = useState<boolean>(true);
@@ -21,41 +21,93 @@ export default function AddMatch() {
     const [CPO, setCPO] = useState<string>("");
     const [city, setCity] = useState<string>("");
     const [errors, setErrors] = useState({ CPO});
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState<Date>(moment().add(1, 'd').toDate());
 
     const localTeamId = sessionStorage.getItem("localTeamId");
 
     const navigation = useNavigate();
 
+    useEffect(() => {
+        setFormData({
+                ...formData,
+                localTeamId :Number(localTeamId),
+                isHomeMatch: isHomeMatch,
+                gameDate: date
+            }
+        );
+    }, [localTeamId]);
+
     const handleAddressChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
+        setAddress(value);
+        updateAddressDatas(value, CPO, city);
     };
 
     const handlePostalCodeChange = (e: ChangeEvent<HTMLInputElement>) => {
         const postalCode = e.target.value;
+        setCPO(postalCode);
         if (/^\d+$/.test(postalCode) && postalCode.length === 5) {
             setErrors({ ...errors, CPO: "" });
         } else {
             setErrors({ ...errors, CPO: 'Code postal invalide' });
         }
+        updateAddressDatas(address, postalCode, city);
     };
 
     const handleCityChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const newCity = e.target.value;
+        setCity(newCity);
+        updateAddressDatas(address, CPO, newCity);
     };
 
     const updateAddressDatas = (newAddress: string, newCPO: string, newCity: string) => {
+        setFormData({
+            ...formData,
+            address: newAddress + "/" + newCPO + "/" + newCity
+        });
     };
 
     const handleDatePickerChange = (newDate: Date) => {
+        setFormData({
+            ...formData,
+            gameDate: newDate,
+        });
 
+        setDate(newDate);
+    };
+
+    const handleSwitchChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setIsHomeMatch(!isHomeMatch);
+        setFormData({
+            ...formData,
+            isHomeMatch: isHomeMatch,
+        });
+    };
+
+    const handleVisitorTeamNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setVisitorTeamName(e.target.value);
+        setFormData({
+            ...formData,
+            visitorTeamName: e.target.value,
+        });
+    };
+
+    const handleCategoryChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setCategory(e.target.value);
+        setFormData({
+            ...formData,
+            category: e.target.value,
+        });
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        apiClient.post(`/api/games/store`, formData)
+
+        apiClient.post(`/api/games`, formData)
             .then((response) => {
-                if(response.status === 200){
+                if(response.status === 201){
                     console.log('Match updated successfully');
+                    console.log(response);
                     navigation("/dashboard/matchs");
                 }
             })
@@ -74,7 +126,7 @@ export default function AddMatch() {
                         colorOne={"#17CFE3"}
                         colorTwo={"#CCBCAD"}
                         isOn={isHomeMatch}
-                        handleToggle={() => setIsHomeMatch(!isHomeMatch)}
+                        handleToggle={handleSwitchChange}
                         textOne={"A domicile"}
                         textTwo={"A l'extérieur"}
                     />
@@ -84,23 +136,24 @@ export default function AddMatch() {
                             ariaLabelledBy={"gameDate"}
                             name={"gameDate"}
                             showTimeSelect
-                            minTime={new Date(0, 0, 0, 8, 30)}
-                            maxTime={new Date(0, 0, 0, 22, 0)}
+                            minDate={new Date(date.getFullYear(), date.getMonth(), date.getDate(), 8, 30)}
+                            minTime={new Date(date.getFullYear(), date.getMonth(), date.getDate(), 8, 30)}
+                            maxDate={new Date(date.getFullYear()+1, date.getMonth(), date.getDate(), 22, 0)}
+                            maxTime={new Date(date.getFullYear()+1, date.getMonth(), date.getDate(), 22, 0)}
                             selected={date}
                             onChange={handleDatePickerChange}
                             dateFormat="d MMMM yyyy à HH:mm"
-                            locale={"fr"}
                             timeFormat="HH:mm"
                         />
                     </div>
-                    <Input onChange={handleAddressChange} type={"text"} field={"Equipe adverse"} value={visitorTeamName} />
-                    <Input onChange={handleAddressChange} type={"text"} field={"Catégorie"} value={category} />
+                    <Input onChange={handleVisitorTeamNameChange} type={"text"} field={"Equipe adverse"} value={visitorTeamName} />
+                    <Input onChange={handleCategoryChange} type={"text"} field={"Catégorie"} value={category} />
                 </fieldset>
                 <fieldset>
                     <legend>Adresse du gymnase : </legend>
                     <Input onChange={handleAddressChange} type={"text"} field={"Adresse"} value={address} />
                     {errors.CPO && <span className="error">{errors.CPO}</span>}
-                    <Input onChange={handlePostalCodeChange} type={"text"} field={"Code postal"} value={CPO}/>
+                    <Input onChange={handlePostalCodeChange} type={"text"} field={"Code postal"} maxLength={5} value={CPO}/>
                     <Input onChange={handleCityChange} type={"text"} field={"Ville"} value={city} />
                 </fieldset>
                 <button type="submit">Mettre à jour le match</button>
