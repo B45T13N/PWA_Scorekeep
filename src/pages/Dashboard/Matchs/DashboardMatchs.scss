@@ -9,7 +9,41 @@ article.dashboard-matchs{
   border-radius: $border-radius;
   box-shadow: $box-shadow;
 
+  section.filter-section{
+    width: 90%;
+    margin: 0 auto;
+    div.date-filters{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      div.date-filter{
+        margin: 5px auto;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        label{
+          text-align: left;
+          margin-bottom: 5px;
+        }
+
+        input{
+          font-size: 17px;
+          background: rgba(255, 255, 255, 0.2);
+          color: #404040;
+          font-family: Barlow-SemiBold, serif;
+          padding: 16px 14px;
+          outline: none;
+          width: 92%;
+          border: 2px #404040 solid;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+
   section.content{
+    margin: 5px 0;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -50,7 +84,15 @@ article.dashboard-matchs{
       cursor: pointer;
       transition: all $transition-duration;
       font-weight: bold;
-      &:hover {
+
+      &:disabled{
+        background: $button-error-color;
+        &:hover{
+          cursor: not-allowed;
+        }
+      }
+
+      &:not(:disabled):hover {
         background-color: $base-blue;
         border-color: $button-hover;
       }

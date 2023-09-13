@@ -4,14 +4,15 @@ import {ChangeEventHandler, useState} from "react";
 interface InputProps {
     type: string,
     field: string,
+    value?: string,
     onChange: ChangeEventHandler<HTMLInputElement>
 }
 
 export function Input(props: InputProps) {
     const label :string = props.field.charAt(0).toUpperCase() + props.field.substring(1, props.field.length)
-    const name :string = props.field === "email" ? "email" : "password";
+    const name :string = props.field !== "mot de passe" ? props.field : "password";
     const [classes, setClasses] = useState<string>("")
-    const [value, setValue] = useState<string>("")
+    const [value, setValue] = useState<string>(props.value || "")
     const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
 
     const onFocus = ()  => {
@@ -38,6 +39,7 @@ export function Input(props: InputProps) {
             <input id={props.field}
                    type={passwordVisible ? "text" : props.type}
                    aria-required
+                   value={value}
                    name={name} required
                    onChange={onChange}
                    onBlur={onBlur}

@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 export default function Connexion() {
     const emailErrorMessage :string = "Veuillez vérifier l'email";
     const connexionErrorMessage :string = "Email ou mot de passe incorrect";
-    const matchsURI = "/matchs";
+    const dashboardURI = "/dashboard";
 
     const navigate = useNavigate();
     let isAuthenticated = sessionStorage.getItem("loggedIn") === 'true';
@@ -17,7 +17,7 @@ export default function Connexion() {
 
     useEffect(() => {
         if(isAuthenticated){
-            navigate(matchsURI);
+            navigate(dashboardURI);
         }
     }, [navigate, isAuthenticated]);
 
@@ -35,7 +35,7 @@ export default function Connexion() {
         let loggedIn = await login(email, password);
 
         if(loggedIn){
-            navigate(matchsURI);
+            navigate(dashboardURI);
         } else {
             setErrorMessage(connexionErrorMessage);
         }
