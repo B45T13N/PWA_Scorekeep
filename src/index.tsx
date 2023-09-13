@@ -33,7 +33,7 @@ function App() {
                     <Route path="/dashboard/matchs" element={<Layout isAuthenticated={isAuthenticated} />}>
                         <Route index element={<DashboardMatchs /> }/>
                     </Route>
-                    <Route path="/dashboard/matchs/edit/:id" element={<Layout isAuthenticated={isAuthenticated} />}>
+                    <Route path="/dashboard/matchs/edit/:matchId" element={<Layout isAuthenticated={isAuthenticated} />}>
                         <Route index element={<UpdateMatch /> }/>
                     </Route>
                 </Routes>
