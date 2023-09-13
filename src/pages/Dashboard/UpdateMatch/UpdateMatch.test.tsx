@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, act, screen } from '@testing-library/react';
+import {render, act, screen, waitFor} from '@testing-library/react';
 import UpdateMatch from './UpdateMatch';
 import {BrowserRouter} from "react-router-dom";
 import axios from "../../../services/apiClient";
@@ -36,15 +36,18 @@ describe('UpdateMatch Component', () => {
             },
         });
 
-        act(() => {
+        const {getByText, queryByText} =
             render(
                 <BrowserRouter>
                     <UpdateMatch/>
                 </BrowserRouter>
             );
-        });
 
-        expect(screen.getByText(/chargement/i)).toBeInTheDocument();
+        expect(getByText(/chargement/i)).toBeInTheDocument();
+
+        await waitFor(() => {
+            expect(queryByText(/chargement/i)).not.toBeInTheDocument();
+        });
     });
 
 
@@ -66,7 +69,7 @@ describe('UpdateMatch Component', () => {
             },
         });
 
-        let getByText, getByLabelText, getByDisplayValue;
+        let getByText, getByDisplayValue;
 
         await act(async () => {
             const component = render(
@@ -75,12 +78,9 @@ describe('UpdateMatch Component', () => {
                 </BrowserRouter>
             );
 
-            // Wait for the data to load
             await new Promise((resolve) => setTimeout(resolve, 0));
 
-            // Get query functions within the act block
             getByText = component.getByText;
-            getByLabelText = component.getByLabelText;
             getByDisplayValue = component.getByDisplayValue;
         });
 
