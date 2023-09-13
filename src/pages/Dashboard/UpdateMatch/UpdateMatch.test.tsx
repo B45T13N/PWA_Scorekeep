@@ -1,8 +1,7 @@
 import React from 'react';
-import {render, act, screen, waitFor} from '@testing-library/react';
+import {render, act, waitFor} from '@testing-library/react';
 import UpdateMatch from './UpdateMatch';
 import {BrowserRouter} from "react-router-dom";
-import axios from "../../../services/apiClient";
 
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
