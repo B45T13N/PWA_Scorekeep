@@ -9,6 +9,7 @@ import {AuthProvider} from "./hooks/useAuth/useAuth";
 import Layout from "./components/templates/Layout/Layout";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import DashboardMatchs from "./pages/Dashboard/Matchs/DashboardMatchs";
+import UpdateMatch from "./pages/Dashboard/UpdateMatch/UpdateMatch";
 
 function App() {
 
@@ -31,6 +32,9 @@ function App() {
                     </Route>
                     <Route path="/dashboard/matchs" element={<Layout isAuthenticated={isAuthenticated} />}>
                         <Route index element={<DashboardMatchs /> }/>
+                    </Route>
+                    <Route path="/dashboard/matchs/edit/:id" element={<Layout isAuthenticated={isAuthenticated} />}>
+                        <Route index element={<UpdateMatch /> }/>
                     </Route>
                 </Routes>
             </Router>
