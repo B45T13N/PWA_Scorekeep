@@ -4,12 +4,15 @@ import useApi from '../../../hooks/useApi/useApi';
 import './DashboardMatchs.scss';
 import { Match } from '../../../interfaces/Match';
 import moment from 'moment';
+import ReactDatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
 
 export default function DashboardMatchs() {
     const apiUrl = `${process.env.REACT_APP_API_SCOREKEEP_URL}/api/games`;
     const localTeamId = sessionStorage.getItem('localTeamId');
     const [startDate, setStartDate] = useState(moment().format('YYYY-MM-DD'));
-    const [endDate, setEndDate] = useState(moment().add("2", "w").format('YYYY-MM-DD'));
+    const [endDate, setEndDate] = useState(moment().add("2", "M").format('YYYY-MM-DD'));
     const [currentPage, setCurrentPage] = useState(1);
     const { data, meta, error, callApi } = useApi();
 
@@ -37,20 +40,18 @@ export default function DashboardMatchs() {
                 <div className={"date-filters"}>
                     <div className="date-filter">
                         <label htmlFor="startDate">Date de début:</label>
-                        <input
-                            type="date"
-                            id="startDate"
-                            value={startDate}
-                            onChange={(e) => setStartDate(e.target.value)}
+                        <ReactDatePicker
+                            selected={moment(startDate, 'YYYY-MM-DD').toDate()}
+                            onChange={(date) => setStartDate(moment(date).format('YYYY-MM-DD'))}
+                            dateFormat="yyyy-MM-dd"
                         />
                     </div>
                     <div className="date-filter">
                         <label htmlFor="endDate">Date de fin:</label>
-                        <input
-                            type="date"
-                            id="endDate"
-                            value={endDate}
-                            onChange={(e) => setEndDate(e.target.value)}
+                        <ReactDatePicker
+                            selected={moment(endDate, 'YYYY-MM-DD').toDate()}
+                            onChange={(date) => setEndDate(moment(date).format('YYYY-MM-DD'))}
+                            dateFormat="yyyy-MM-dd"
                         />
                     </div>
                 </div>
