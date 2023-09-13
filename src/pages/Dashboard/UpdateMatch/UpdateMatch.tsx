@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 import {Match} from "../../../interfaces/Match";
 import apiClient from "../../../services/apiClient";
 import "./UpdateMatch.scss"
@@ -128,7 +128,10 @@ export default function UpdateMatch() {
                     <Input onChange={handlePostalCodeChange} type={"text"} field={"Code postal"} value={CPO}/>
                     <Input onChange={handleCityChange} type={"text"} field={"Ville"} value={city} />
                 </div>
-                <button type="submit">Mettre à jour le match</button>
+                <div className={"btn-form"}>
+                    <button type="submit">Mettre à jour le match</button>
+                    <Link to={"/dashboard/matchs"}><button>Retour</button></Link>
+                </div>
             </form>
         </article>
     );
