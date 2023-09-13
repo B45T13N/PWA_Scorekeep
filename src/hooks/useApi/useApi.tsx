@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
-import axios from "axios";
 import PaginationMeta from "../../interfaces/PaginationMeta";
+import apiClient from "../../services/apiClient";
 
 export default function useApi() {
     const [error, setError] = useState(false);
@@ -14,12 +14,9 @@ export default function useApi() {
     });
 
     useEffect(() => {
-        const headers = {
-            'Scorekeep-API-Key': process.env.REACT_APP_API_SCOREKEEP_KEY,
-        };
 
         if (apiUrl != null) {
-            axios.get(apiUrl, {headers})
+            apiClient.get(apiUrl)
                 .then((response) => {
                     setMeta(response.data.meta as PaginationMeta);
                     setData(response.data.data);
