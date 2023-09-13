@@ -10,6 +10,7 @@ import Layout from "./components/templates/Layout/Layout";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import DashboardMatchs from "./pages/Dashboard/Matchs/DashboardMatchs";
 import UpdateMatch from "./pages/Dashboard/UpdateMatch/UpdateMatch";
+import AddMatch from "./pages/Dashboard/AddMatch/AddMatch";
 
 function App() {
 
@@ -35,6 +36,9 @@ function App() {
                     </Route>
                     <Route path="/dashboard/matchs/edit/:matchId" element={<Layout isAuthenticated={isAuthenticated} />}>
                         <Route index element={<UpdateMatch /> }/>
+                    </Route>
+                    <Route path="/dashboard/matchs/add" element={<Layout isAuthenticated={isAuthenticated} />}>
+                        <Route index element={<AddMatch /> }/>
                     </Route>
                 </Routes>
             </Router>
