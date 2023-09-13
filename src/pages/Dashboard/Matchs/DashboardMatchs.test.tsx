@@ -4,11 +4,6 @@ import '@testing-library/jest-dom/extend-expect'; // Import for expect assertion
 import DashboardMatchs from './DashboardMatchs';
 import {BrowserRouter} from "react-router-dom";
 
-
-jest.mock("../../../hooks/useAuth/useAuth", () => ({
-    useAuth: jest.fn(),
-}));
-
 jest.mock('../../../hooks/useApi/useApi', () => ({
     __esModule: true,
     default: jest.fn(),
@@ -23,14 +18,16 @@ describe('DashboardMatchs', () => {
     it('renders the component with loading state', () => {
         jest.requireMock('../../../hooks/useApi/useApi').default.mockReturnValue({
             data: [],
+            meta: {
+                current_page: 1,
+                last_page: 1,
+                per_page: 10,
+                total: 0,
+            },
             error: null,
             isLoading: true,
             callApi: jest.fn(),
         });
-        const mockUseAuth = {
-            logout: () => {}
-        };
-        jest.requireMock("../../../hooks/useAuth/useAuth").useAuth.mockReturnValue(mockUseAuth);
 
         render(
             <BrowserRouter>
@@ -44,14 +41,16 @@ describe('DashboardMatchs', () => {
     it('renders the component with error state', () => {
         jest.requireMock('../../../hooks/useApi/useApi').default.mockReturnValue({
             data: [],
+            meta: {
+                current_page: 1,
+                last_page: 1,
+                per_page: 10,
+                total: 0,
+            },
             error: 'Error message',
             isLoading: false,
             callApi: jest.fn(),
         });
-        const mockUseAuth = {
-            logout: () => {}
-        };
-        jest.requireMock("../../../hooks/useAuth/useAuth").useAuth.mockReturnValue(mockUseAuth);
 
         render(
             <BrowserRouter>
@@ -73,14 +72,17 @@ describe('DashboardMatchs', () => {
         ];
         jest.requireMock('../../../hooks/useApi/useApi').default.mockReturnValue({
             data: mockData,
+            meta: {
+                current_page: 1,
+                last_page: 1,
+                per_page: 10,
+                total: 0,
+            },
             error: null,
             isLoading: false,
             callApi: jest.fn(),
         });
-        const mockUseAuth = {
-            logout: () => {}
-        };
-        jest.requireMock("../../../hooks/useAuth/useAuth").useAuth.mockReturnValue(mockUseAuth);
+
         render(
             <BrowserRouter>
                 <DashboardMatchs />
