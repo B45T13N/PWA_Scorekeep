@@ -9,6 +9,7 @@ export interface Match {
     address: string,
     category: string,
     gameDate: Date,
+    isHomeMatch: boolean,
     timekeeper?: Timekeeper,
     secretary?: Secretary,
     roomManager?: RoomManager,
