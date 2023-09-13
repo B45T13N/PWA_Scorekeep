@@ -5,6 +5,7 @@ interface InputProps {
     type: string,
     field: string,
     value?: string,
+    maxLength?: number,
     onChange: ChangeEventHandler<HTMLInputElement>
 }
 
@@ -14,6 +15,8 @@ export function Input(props: InputProps) {
     const [classes, setClasses] = useState<string>("")
     const [value, setValue] = useState<string>(props.value || "")
     const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+
+    const maxLength = props.maxLength || 255;
 
     const onFocus = ()  => {
         setClasses("_focused")
@@ -39,6 +42,7 @@ export function Input(props: InputProps) {
             <input id={props.field}
                    type={passwordVisible ? "text" : props.type}
                    aria-required
+                   maxLength={maxLength}
                    value={value}
                    name={name} required
                    onChange={onChange}

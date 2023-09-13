@@ -89,6 +89,9 @@ export default function DashboardMatchs() {
                     </tbody>
                 </table>
                 <div className="pagination">
+                    <div className={"page-number"}>
+                        Page {meta.current_page} sur {meta.last_page}
+                    </div>
                     <div>
                         <button
                             onClick={handlePreviousPage} disabled={currentPage === 1}
@@ -101,9 +104,6 @@ export default function DashboardMatchs() {
                             Suivant
                         </button>
                     </div>
-                    <span>
-                        Page {meta.current_page} sur {meta.last_page}
-                    </span>
                 </div>
             </section>
         </article>
