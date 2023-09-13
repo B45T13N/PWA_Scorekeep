@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {Match} from "../../../interfaces/Match";
 import apiClient from "../../../services/apiClient";
 import "./AddMatch.scss"
@@ -156,7 +156,10 @@ export default function AddMatch() {
                     <Input onChange={handlePostalCodeChange} type={"text"} field={"Code postal"} maxLength={5} value={CPO}/>
                     <Input onChange={handleCityChange} type={"text"} field={"Ville"} value={city} />
                 </fieldset>
-                <button type="submit">Mettre à jour le match</button>
+                <div className={"btn-form"}>
+                    <button type="submit">Ajouter le match</button>
+                    <Link to={"/dashboard/matchs"}><button>Retour</button></Link>
+                </div>
             </form>
         </article>
     );
