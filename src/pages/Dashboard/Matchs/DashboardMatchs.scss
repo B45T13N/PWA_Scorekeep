@@ -9,7 +9,28 @@ article.dashboard-matchs{
   border-radius: $border-radius;
   box-shadow: $box-shadow;
 
+  section.filter-section{
+    width: 90%;
+    margin: 0 auto;
+    div.date-filters{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      div.date-filter{
+        margin: 5px auto;
+        display: flex;
+        width: 50%;
+        justify-content: space-between;
+        label{
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
   section.content{
+    margin: 5px 0;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -50,7 +71,15 @@ article.dashboard-matchs{
       cursor: pointer;
       transition: all $transition-duration;
       font-weight: bold;
-      &:hover {
+
+      &:disabled{
+        background: $button-error-color;
+        &:hover{
+          cursor: not-allowed;
+        }
+      }
+
+      &:not(:disabled):hover {
         background-color: $base-blue;
         border-color: $button-hover;
       }
