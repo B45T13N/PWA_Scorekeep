@@ -87,8 +87,10 @@ export default function UpdateMatch() {
         e.preventDefault();
         apiClient.put(`/api/games/${matchId}`, formData)
             .then((response) => {
-                console.log('Match updated successfully');
-                navigation("/dashboard/matchs");
+                if(response.status === 200){
+                    console.log('Match updated successfully');
+                    navigation("/dashboard/matchs");
+                }
             })
             .catch((error) => {
                 console.error(error);
@@ -96,7 +98,9 @@ export default function UpdateMatch() {
     };
 
     if (!matchData) {
-        return <article className={"update-match"}>Loading...</article>;
+        return <article className={"update-match"}>
+            <h2>Chargement...</h2>
+        </article>;
     }
 
     return (
@@ -104,8 +108,9 @@ export default function UpdateMatch() {
             <h2>Mise à jour du match <br/> {formData.category} contre {formData.visitorTeam?.name}</h2>
             <form onSubmit={handleSubmit}>
                 <div className={"datepicker"}>
-                    <label>Date du match:</label>
+                    <label htmlFor={"gameDate"}>Date du match:</label>
                     <ReactDatePicker
+                        ariaLabelledBy={"gameDate"}
                         name={"gameDate"}
                         showTimeSelect
                         minTime={new Date(0, 0, 0, 8, 30)}
