@@ -36,9 +36,11 @@
 
                 if (response.status === 200) {
                     sessionStorage.setItem('loggedIn', 'true');
+                    sessionStorage.setItem('localTeamId', response.data.local_team_id);
                     return true;
                 } else {
                     sessionStorage.setItem('loggedIn', 'false');
+                    sessionStorage.setItem('localTeamId', '');
                     return false;
                 }
             } catch (error) {
