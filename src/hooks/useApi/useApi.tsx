@@ -1,10 +1,17 @@
 import {useState, useEffect} from 'react';
 import axios from "axios";
+import PaginationMeta from "../../interfaces/PaginationMeta";
 
 export default function useApi() {
     const [error, setError] = useState(false);
     const [apiUrl, setApiUrl] = useState<string>();
     const [data, setData] = useState([]);
+    const [meta, setMeta] = useState<PaginationMeta>({
+        current_page: 1,
+        last_page: 1,
+        per_page: 10,
+        total: 0,
+    });
 
     useEffect(() => {
         const headers = {
@@ -12,9 +19,10 @@ export default function useApi() {
         };
 
         if (apiUrl != null) {
-            axios.get(apiUrl, {headers}) // Use Axios for GET request
+            axios.get(apiUrl, {headers})
                 .then((response) => {
-                    setData(response.data.data); // Use response.data to get the data
+                    setMeta(response.data.meta as PaginationMeta);
+                    setData(response.data.data);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -23,5 +31,5 @@ export default function useApi() {
         }
     }, [apiUrl]);
 
-    return { data, error, callApi: setApiUrl };
+    return { data, meta, error, callApi: setApiUrl };
 }
