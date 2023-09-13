@@ -35,6 +35,10 @@ code {
 }
 
 @media(max-width: $layout-breakpoint-small){
+  header{
+    position: sticky;
+    top: 0;
+  }
   .hidden-s{
     display: none;
   }
