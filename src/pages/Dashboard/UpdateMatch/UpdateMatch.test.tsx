@@ -35,18 +35,16 @@ describe('UpdateMatch Component', () => {
             },
         });
 
-        const {getByText, queryByText} =
-            render(
-                <BrowserRouter>
-                    <UpdateMatch/>
-                </BrowserRouter>
-            );
+        render(
+            <BrowserRouter>
+                <UpdateMatch/>
+            </BrowserRouter>
+        );
 
-        // eslint-disable-next-line testing-library/prefer-screen-queries
-        expect(getByText(/chargement/i)).toBeInTheDocument();
+        expect(screen.getByText(/chargement/i)).toBeInTheDocument();
 
         await waitFor(() => {
-            expect(queryByText(/chargement/i)).not.toBeInTheDocument();
+            expect(screen.queryByText(/chargement/i)).not.toBeInTheDocument();
         });
     });
 
