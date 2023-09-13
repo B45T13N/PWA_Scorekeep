@@ -21,7 +21,7 @@ export default function DashboardMatchs() {
 
             <section className="content">
                 <div className="add-match-button">
-                    <Link to="/match/add">
+                    <Link to="/dashboard/matchs/add">
                         <button>Ajouter un match</button>
                     </Link>
                 </div>
@@ -42,7 +42,7 @@ export default function DashboardMatchs() {
                             <td className={"hidden-s"}>{match.visitorTeam.name}</td>
                             <td>{match.category}</td>
                             <td>
-                                <Link to={`/match/edit/${match.id}`}>
+                                <Link to={`/dashboard/matchs/edit/${match.id}`}>
                                     <button>Modifier</button>
                                 </Link>
                             </td>
