@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, act, waitFor} from '@testing-library/react';
+import {render, act, waitFor, screen} from '@testing-library/react';
 import UpdateMatch from './UpdateMatch';
 import {BrowserRouter} from "react-router-dom";
 
@@ -21,7 +21,7 @@ describe('UpdateMatch Component', () => {
         jest.clearAllMocks();
     });
 
-    it('renders without crashing', async () => {
+    test('renders without crashing', async () => {
         // Mock the axios get method to return data
         const axios = require('../../../services/apiClient');
         axios.get.mockResolvedValueOnce({
@@ -42,6 +42,7 @@ describe('UpdateMatch Component', () => {
                 </BrowserRouter>
             );
 
+        // eslint-disable-next-line testing-library/prefer-screen-queries
         expect(getByText(/chargement/i)).toBeInTheDocument();
 
         await waitFor(() => {
@@ -50,7 +51,7 @@ describe('UpdateMatch Component', () => {
     });
 
 
-    it('loads match data and displays form', async () => {
+    test('loads match data and displays form', async () => {
         // Mock the axios get method to return data
         const axios = require('../../../services/apiClient');
 
@@ -68,10 +69,8 @@ describe('UpdateMatch Component', () => {
             },
         });
 
-        let getByText, getByDisplayValue;
-
         await act(async () => {
-            const component = render(
+            render(
                 <BrowserRouter>
                     <UpdateMatch />
                 </BrowserRouter>
@@ -79,14 +78,12 @@ describe('UpdateMatch Component', () => {
 
             await new Promise((resolve) => setTimeout(resolve, 0));
 
-            getByText = component.getByText;
-            getByDisplayValue = component.getByDisplayValue;
         });
 
-        expect(getByText('Date du match:')).toBeInTheDocument();
-        expect(getByDisplayValue('123 Main St')).toBeInTheDocument();
-        expect(getByDisplayValue('12345')).toBeInTheDocument();
-        expect(getByDisplayValue('City')).toBeInTheDocument();
+        expect(screen.getByText('Date du match:')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('123 Main St')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('12345')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('City')).toBeInTheDocument();
     });
 
 });
