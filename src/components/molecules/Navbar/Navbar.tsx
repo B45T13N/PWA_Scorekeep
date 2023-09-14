@@ -8,7 +8,7 @@ export default function Navbar() {
 
     const navlinks :Array<NavlinkObject> = [
         {innerText: "Accueil",link: "/"},
-        {innerText: "Les matchs",link: "/matchs"},
+        {innerText: "Les équipes",link: "/local-teams"},
     ];
     if(!isAuthenticated){
         navlinks.push(

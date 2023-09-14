@@ -13,7 +13,7 @@ function Dashboard() {
 
     return (
         <section className="dashboard">
-            <h1>Panneau d'administration</h1>
+            <h2>Panneau d'administration</h2>
             <div className="dashboard-links">
                 {dashboardLinks.map((obj, key) =>
                     <DashboardLink key={key} link={obj.link} innerText={obj.innerText}/>
