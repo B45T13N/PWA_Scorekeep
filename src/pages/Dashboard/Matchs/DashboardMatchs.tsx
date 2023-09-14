@@ -126,8 +126,8 @@ export default function DashboardMatchs() {
                                                 <Link to={`/dashboard/matchs/edit/${match.id}`}>
                                                     <button>Modifier</button>
                                                 </Link>
-                                                <button onClick={() => {handleDeleteGame(match.id)}}>Supprimer</button>
                                                 <button onClick={() => {handleCancelGame(match.id)}}>Annuler</button>
+                                                <button onClick={() => {handleDeleteGame(match.id)}}>Supprimer</button>
                                             </>) :
                                         (<button onClick={() => {handleConfirmGame(match.id)}}>Confirmer</button>)
                                     }
