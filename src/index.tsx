@@ -22,7 +22,7 @@ function App() {
                     <Route path="/" element={<Layout />}>
                         <Route index element={<Home />} />
                     </Route>
-                    <Route path="/matchs" element={<Layout />}>
+                    <Route path="/local-teams" element={<Layout />}>
                         <Route index element={<Home />} />
                     </Route>
                     <Route path="/connexion" element={<Layout />}>
