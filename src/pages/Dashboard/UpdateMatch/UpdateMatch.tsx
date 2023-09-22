@@ -113,6 +113,7 @@ export default function UpdateMatch() {
                         ariaLabelledBy={"gameDate"}
                         name={"gameDate"}
                         showTimeSelect
+                        minDate={new Date()}
                         minTime={new Date(0, 0, 0, 8, 30)}
                         maxTime={new Date(0, 0, 0, 22, 0)}
                         selected={date}
