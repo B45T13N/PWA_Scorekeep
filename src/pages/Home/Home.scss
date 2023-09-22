@@ -1,6 +1,6 @@
 @import "../../assets/scss/variables";
 
-section.content{
+article.home-content{
   margin: 15px auto;
   padding: 20px;
   width: 80%;
@@ -15,15 +15,15 @@ section.content{
     text-align: center;
   }
 
-  article{
+  section{
     text-align: justify;
   }
 
-  article.main-paragraph{
+  section.main-paragraph{
     margin-bottom: 40px;
   }
 
-  article.footer-paragraph{
+  section.footer-paragraph{
     font-weight: bold;
   }
 }

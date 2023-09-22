@@ -76,6 +76,12 @@ article.dashboard-matchs{
       }
     }
 
+    .action-buttons{
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+
     button {
       padding: 5px 10px;
       border: solid 1px $base-blue;
@@ -97,7 +103,6 @@ article.dashboard-matchs{
         border-color: $button-hover;
       }
     }
-
     div.pagination{
       div.page-number{
         margin-bottom: 10px;
@@ -107,6 +112,20 @@ article.dashboard-matchs{
       }
     }
   }
+}
 
-
+@media(max-width: $layout-breakpoint-extra-small){
+  article.dashboard-matchs{
+    section.content{
+      .action-buttons {
+        flex-direction: column;
+        * {
+          width: 100%;
+        }
+        > *{
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
 }

@@ -1,9 +1,9 @@
 import './Home.scss'
 function Home() {
     return (
-        <section className="content">
+        <article className="home-content">
             <h2>Suivez, enregistrez et gérez vos Matchs avec Scorekeep</h2>
-            <article className={"main-paragraph"}>
+            <section className={"main-paragraph"}>
                 <p>
                     Cette application est dédiée aux associations sportives.
                     Elle a été conçue pour répondre à vos besoins en matière de suivi de matchs, d'enregistrement et de
@@ -28,16 +28,16 @@ function Home() {
                     Au delà de la gestion des tables de marques, cette application permet aux familles / parents de
                     savoir quand un match est joué.
                 </p>
-            </article>
-            <article className={"footer-paragraph"}>
+            </section>
+            <section className={"footer-paragraph"}>
                 <p>
                     Si toutefois vous souhaitez inscrire votre association afin de bénéficier de cette application, n’hésitez pas à me contacter.
                 </p>
                 <p>
                     DoWeDev
                 </p>
-            </article>
-        </section>
+            </section>
+        </article>
     )
 }
 

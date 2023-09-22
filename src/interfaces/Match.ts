@@ -10,6 +10,7 @@ export interface Match {
     category: string,
     gameDate: Date,
     isHomeMatch: boolean,
+    isCancelled: boolean,
     timekeeper?: Timekeeper,
     secretary?: Secretary,
     roomManager?: RoomManager,

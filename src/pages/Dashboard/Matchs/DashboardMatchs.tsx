@@ -6,6 +6,7 @@ import { Match } from '../../../interfaces/Match';
 import moment from 'moment';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import apiClient from "../../../services/apiClient";
 
 
 export default function DashboardMatchs() {
@@ -32,6 +33,45 @@ export default function DashboardMatchs() {
         const url = `${apiUrl}?page=${currentPage}&per_page=${meta.per_page}&$&local_team_id=${localTeamId}&start_date=${startDate}&end_date=${endDate}`;
         callApi(url);
     }, [apiUrl, callApi, currentPage, meta.per_page, startDate, endDate, localTeamId]);
+
+    const handleDeleteGame = (idMatch: number) => {
+        apiClient.post("/api/games/delete", {"gameId": idMatch})
+            .then((response) => {
+            if(response.status === 200){
+                console.log('Match deleted successfully');
+                window.location.reload();
+            }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
+    const handleCancelGame = (idMatch: number) => {
+        apiClient.post("/api/games/cancel", {"gameId": idMatch})
+            .then((response) => {
+                if(response.status === 200){
+                    console.log('Match cancelled successfully');
+                    window.location.reload();
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
+    const handleConfirmGame = (idMatch: number) => {
+        apiClient.post("/api/games/confirm", {"gameId": idMatch})
+            .then((response) => {
+                if(response.status === 200){
+                    console.log('Match confirmed successfully');
+                    window.location.reload();
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 
     return (
         <article className="dashboard-matchs">
@@ -80,9 +120,18 @@ export default function DashboardMatchs() {
                             <td className={'hidden-s'}>{match.visitorTeam.name}</td>
                             <td>{match.category}</td>
                             <td>
-                                <Link to={`/dashboard/matchs/edit/${match.id}`}>
-                                    <button>Modifier</button>
-                                </Link>
+                                <div className={"action-buttons"}>
+                                    {!match.isCancelled ? (
+                                            <>
+                                                <Link to={`/dashboard/matchs/edit/${match.id}`}>
+                                                    <button>Modifier</button>
+                                                </Link>
+                                                <button onClick={() => {handleCancelGame(match.id)}}>Annuler</button>
+                                                <button onClick={() => {handleDeleteGame(match.id)}}>Supprimer</button>
+                                            </>) :
+                                        (<button onClick={() => {handleConfirmGame(match.id)}}>Confirmer</button>)
+                                    }
+                                </div>
                             </td>
                         </tr>
                     ))}
