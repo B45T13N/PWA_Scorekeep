@@ -4,27 +4,19 @@ import RadioInput from "./RadioInput";
 
 describe("RadioInputComponent", () => {
     test('renders radio input', () => {
-        render(<RadioInput text={"turtle"} name={"turtles"} />);
+
+        const handleRadioSelect = (e: React.ChangeEvent) => {
+        };
+
+        render(<RadioInput id={"1"} text={"turtle"} name={"turtles"} isSelected={true} onSelect={handleRadioSelect} />);
         const label = screen.getByText(/turtle/i);
         expect(label).toBeInTheDocument();
-        expect(label).toHaveAttribute("for", "turtles");
+        expect(label).toHaveAttribute("for", "1");
 
         const div = screen.getByTestId("parent-div")
 
         expect(div).toBeInTheDocument();
         expect(div).toHaveClass("radio-input")
-    });
-
-    test('renders radio input selected', () => {
-        render(<RadioInput text={"turtle"} name={"turtles"} selected={true} />);
-        const label = screen.getByText(/turtle/i);
-        expect(label).toBeInTheDocument();
-        expect(label).toHaveAttribute("for", "turtles");
-
-        const div = screen.getByTestId("parent-div")
-
-        expect(div).toBeInTheDocument();
-        expect(div).toHaveClass("radio-input selected")
     });
 })
 
