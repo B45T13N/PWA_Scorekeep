@@ -5,7 +5,6 @@ import moment from "moment";
 import {Secretary} from "../../../interfaces/Secretary";
 import {Timekeeper} from "../../../interfaces/Timekeeper";
 import {RoomManager} from "../../../interfaces/RoomManager";
-import {match} from "assert";
 import apiClient from "../../../services/apiClient";
 
 interface VolunteerSelectionProps {
