@@ -1,13 +1,11 @@
 import React from 'react';
-import {render, act, waitFor, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Volunteers from './Volunteers';
 import {BrowserRouter} from "react-router-dom";
 
-jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useParams: () => ({
-        matchId: '1', // Replace with a suitable mock value
-    }),
+jest.mock('../../../hooks/useApi/useApi', () => ({
+    __esModule: true,
+    default: jest.fn(),
 }));
 
 jest.mock('../../../services/apiClient', () => ({
@@ -15,73 +13,66 @@ jest.mock('../../../services/apiClient', () => ({
     put: jest.fn(),
 }));
 
-describe('Volunteers Component', () => {
-    beforeEach(() => {
-        // Reset the mock function before each test
-        jest.clearAllMocks();
-    });
 
-    test('renders without crashing', async () => {
-        // Mock the axios get method to return data
-        const axios = require('../../../services/apiClient');
-        axios.get.mockResolvedValueOnce({
-            data: {
-                data: {
-                    gameDate: '2023-09-15T10:00:00Z',
-                    visitorTeam: 'Team A',
-                    category: 'Category A',
-                    address: '123 Main St/12345/City',
-                },
+const mockData = [
+    {
+        id: 1,
+        visitorTeam: { name: 'Visitor Team 1' },
+        category: 'Category 1',
+        gameDate: new Date('2023-09-30T12:00:00'),
+        isHomeMatch: true,
+        timekeepers: [],
+        roomManagers: [],
+        secretaries: [],
+        roomManager: { id: 101 },
+        timekeeper: { id: 102 },
+        secretary: { id: 103 },
+    },
+];
+
+describe('Volunteers', () => {
+    it('renders without crashing', () => {
+        jest.requireMock('../../../hooks/useApi/useApi').default.mockReturnValue({
+            data: mockData,
+            meta: {
+                current_page: 1,
+                last_page: 1,
+                per_page: 10,
+                total: 0,
             },
+            error: null,
+            isLoading: false,
+            callApi: jest.fn(),
         });
 
+        render(<Volunteers />);
+    });
+
+    it('fetches data and renders VolunteerSelection components', async () => {
+        // Arrange
+        jest.requireMock('../../../hooks/useApi/useApi').default.mockReturnValue({
+            data: mockData,
+            meta: {
+                current_page: 1,
+                last_page: 1,
+                per_page: 10,
+                total: 0,
+            },
+            error: null,
+            isLoading: false,
+            callApi: jest.fn(),
+        });
+
+        // Act
         render(
             <BrowserRouter>
-                <Volunteers/>
-            </BrowserRouter>
-        );
+                <Volunteers />
+            </BrowserRouter>);
 
-        expect(screen.getByText(/chargement/i)).toBeInTheDocument();
-
-        await waitFor(() => {
-            expect(screen.queryByText(/chargement/i)).not.toBeInTheDocument();
-        });
-    });
-
-
-    test('loads match data and displays form', async () => {
-        // Mock the axios get method to return data
-        const axios = require('../../../services/apiClient');
-
-        const data = {
-            gameDate: '2023-09-15T10:00:00Z',
-            visitorTeam: {
-                name: 'Team A',
-            },
-            category: 'Category A',
-            address: '123 Main St/12345/City',
-        }
-        axios.get.mockResolvedValueOnce({
-            data: {
-                data,
-            },
-        });
-
-        await act(async () => {
-            render(
-                <BrowserRouter>
-                    <Volunteers />
-                </BrowserRouter>
-            );
-
-            await new Promise((resolve) => setTimeout(resolve, 0));
-
-        });
-
-        expect(screen.getByText('Date du match:')).toBeInTheDocument();
-        expect(screen.getByDisplayValue('123 Main St')).toBeInTheDocument();
-        expect(screen.getByDisplayValue('12345')).toBeInTheDocument();
-        expect(screen.getByDisplayValue('City')).toBeInTheDocument();
+        // Assert
+        expect(screen.getByText('Bénévoles de la semaine')).toBeInTheDocument();
+        const volunteerSelectionComponents = screen.getAllByRole('row');
+        expect(volunteerSelectionComponents.length).toBe(mockData.length + 1);
     });
 
 });
