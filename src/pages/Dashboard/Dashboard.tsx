@@ -9,6 +9,7 @@ interface DashboardLinks {
 function Dashboard() {
     const dashboardLinks :Array<DashboardLinks> = [
         {innerText: "Gestion des matchs",link: "/dashboard/matchs"},
+        {innerText: "Gestion des bénévoles",link: "/dashboard/volunteers"},
     ];
 
     return (
