@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import DashboardMatchs from "./pages/Dashboard/Matchs/DashboardMatchs";
 import UpdateMatch from "./pages/Dashboard/UpdateMatch/UpdateMatch";
 import AddMatch from "./pages/Dashboard/AddMatch/AddMatch";
+import Volunteers from "./pages/Dashboard/Volunteers/Volunteers";
 
 function App() {
 
@@ -39,6 +40,9 @@ function App() {
                     </Route>
                     <Route path="/dashboard/matchs/add" element={<Layout isAuthenticated={isAuthenticated} />}>
                         <Route index element={<AddMatch /> }/>
+                    </Route>
+                    <Route path="/dashboard/volunteers" element={<Layout />}>
+                        <Route index element={<Volunteers /> }/>
                     </Route>
                 </Routes>
             </Router>
