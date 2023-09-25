@@ -6,7 +6,7 @@ import {Match} from "../../../interfaces/Match";
 
 export default function Volunteers() {
     const apiUrl = `${process.env.REACT_APP_API_SCOREKEEP_URL}/api/weekGames`;
-    const { data, meta, error, callApi } = useApi();
+    const { data, error, callApi } = useApi();
     const localTeamId = sessionStorage.getItem('localTeamId');
 
     useEffect(() => {
@@ -18,7 +18,10 @@ export default function Volunteers() {
         <article className={"volunteers"}>
             <h2>Bénévoles de la semaine</h2>
             {data.length === 0 ? (
-                <p>Pas de matchs disponibles</p>
+                error ?
+                    <p>Erreur lors du chargements des données</p>
+                    :
+                    <p>Pas de matchs disponibles</p>
             ) : (
                 <table>
                     <thead>
