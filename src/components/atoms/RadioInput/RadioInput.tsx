@@ -1,19 +1,29 @@
-import "./RadioInput.scss"
+import React from "react";
+import "./RadioInput.scss";
 
 interface RadioInputProps {
-    text:string,
-    name:string,
-    selected?: boolean,
+    id: string,
+    text: string,
+    name: string,
+    isSelected: boolean,
+    onSelect: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export default function RadioInput(props: RadioInputProps) {
-
-    const className = props.selected ? "radio-input selected" : "radio-input";
+    const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        props.onSelect(e);
+    };
 
     return (
-        <div data-testid={"parent-div"} className={className}>
-            <input type="radio" name={props.name}/>
-            <label htmlFor={props.name}>{props.text}</label>
+        <div data-testid={"parent-div"} className={`radio-input ${props.isSelected ? "selected" : ""}`}>
+            <input
+                type="radio"
+                id={props.id}
+                name={props.name}
+                checked={props.isSelected}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {handleRadioChange(e)}}
+            />
+            <label htmlFor={props.id}>{props.text}</label>
         </div>
-    )
+    );
 }
