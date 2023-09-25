@@ -5,7 +5,7 @@ import RadioInput from "./RadioInput";
 describe("RadioInputComponent", () => {
     test('renders radio input', () => {
 
-        const handleRadioSelect = (e: React.ChangeEvent) => {
+        const handleRadioSelect = () => {
         };
 
         render(<RadioInput id={"1"} text={"turtle"} name={"turtles"} isSelected={true} onSelect={handleRadioSelect} />);
