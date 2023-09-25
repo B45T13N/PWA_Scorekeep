@@ -30,7 +30,7 @@ export default function DashboardMatchs() {
     };
 
     useEffect(() => {
-        const url = `${apiUrl}?page=${currentPage}&per_page=${meta.per_page}&$&local_team_id=${localTeamId}&start_date=${startDate}&end_date=${endDate}`;
+        const url = `${apiUrl}?page=${currentPage}&per_page=${meta.per_page}&local_team_id=${localTeamId}&start_date=${startDate}&end_date=${endDate}`;
         callApi(url);
     }, [apiUrl, callApi, currentPage, meta.per_page, startDate, endDate, localTeamId]);
 
