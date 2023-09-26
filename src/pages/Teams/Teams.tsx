@@ -21,7 +21,7 @@ export default function Teams() {
                 ) : (
                     <section className={"teams-display"}>
                         {data.map((localTeam: LocalTeam) => (
-                            <TeamCard key={localTeam.id} link={`/teams/${localTeam.id}`} teamName={localTeam.name} logoPath={localTeam.logo} />
+                            <TeamCard key={localTeam.id} link={`/matchs/${localTeam.id}`} teamName={localTeam.name} logoPath={localTeam.logo} />
                         ))}
                     </section>
                 )}
