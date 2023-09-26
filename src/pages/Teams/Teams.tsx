@@ -3,6 +3,7 @@ import TeamCard from "../../components/atoms/TeamCard/TeamCard";
 import useApi from "../../hooks/useApi/useApi";
 import {useEffect} from "react";
 import {LocalTeam} from "../../interfaces/LocalTeam";
+
 export default function Teams() {
     const apiUrl = `${process.env.REACT_APP_API_SCOREKEEP_URL}/api/local-teams`;
     const { data, error, callApi } = useApi();
@@ -20,7 +21,7 @@ export default function Teams() {
                 ) : (
                     <section className={"teams-display"}>
                         {data.map((localTeam: LocalTeam) => (
-                            <TeamCard link={`/teams/${localTeam.id}`} teamName={localTeam.name} logoPath={localTeam.logo} />
+                            <TeamCard key={localTeam.id} link={`/teams/${localTeam.id}`} teamName={localTeam.name} logoPath={localTeam.logo} />
                         ))}
                     </section>
                 )}
