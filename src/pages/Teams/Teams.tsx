@@ -15,17 +15,15 @@ export default function Teams() {
     return (
         <article className="teams-content">
             <h2>Les clubs</h2>
-            <section className={"teams-display"}>
                 {error ? (
                     <p>Erreur lors de la récupération des équipes</p>
                 ) : (
                     <section className={"teams-display"}>
                         {data.map((localTeam: LocalTeam) => (
-                            <TeamCard key={localTeam.id} link={`/teams/${localTeam.id}`} teamName={localTeam.name} logoPath={localTeam.logo} />
+                            <TeamCard key={localTeam.id} link={`/matchs/${localTeam.id}`} teamName={localTeam.name} logoPath={localTeam.logo} />
                         ))}
                     </section>
                 )}
-            </section>
         </article>
     )
 }
