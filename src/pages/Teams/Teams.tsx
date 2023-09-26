@@ -15,7 +15,6 @@ export default function Teams() {
     return (
         <article className="teams-content">
             <h2>Les clubs</h2>
-            <section className={"teams-display"}>
                 {error ? (
                     <p>Erreur lors de la récupération des équipes</p>
                 ) : (
@@ -25,7 +24,6 @@ export default function Teams() {
                         ))}
                     </section>
                 )}
-            </section>
         </article>
     )
 }
