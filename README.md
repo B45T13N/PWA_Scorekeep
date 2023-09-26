@@ -1,52 +1,71 @@
-# Getting Started with Create React App
+# Scorekeep
+[![Node.js CI](https://github.com/B45T13N/PWA_Scorekeep/actions/workflows/pipeline_test.yml/badge.svg)](https://github.com/B45T13N/PWA_Scorekeep/actions/workflows/pipeline_test.yml)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[English Version](/README_EN.md)
 
-## Available Scripts
+Scorekeep est une application web open source conçue pour aider les associations de sports collectifs indoor à gérer les inscriptions des adhérents aux tables des scores et à diffuser la liste des matchs du week-end. Cette application offre une solution simple et conviviale pour simplifier la gestion des activités sportives au sein de votre association.
 
-In the project directory, you can run:
+## Fonctionnalités Principales
 
-### `npm start`
+- **Inscriptions aux Tables des Scores**: Permettre aux adhérents de s'inscrire aux tables des scores pour les matchs à venir.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Calendrier des Matchs**: Créez et gérez un calendrier des matchs du week-end, en affichant les détails des matchs, les heures de début, et les emplacements.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Configuration Requise
 
-### `npm test`
+Pour utiliser Scorekeep, vous devez disposer des éléments suivants :
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js et npm installés sur votre machine.
+- Une API Rest disponible afin de collecter et transmettre les données.
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clonez ce dépôt sur votre machine locale :
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   git clone https://github.com/B45T13N/PWA_Scorekeep.git
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Accédez au répertoire du projet :
 
-### `npm run eject`
+   ```bash
+   cd PWA_Scorekeep
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Installez les dépendances Node.js nécessaires :
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   npm install
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+4. Configurez votre base de données en créant un fichier `.env` avec les informations de connexion appropriées.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+5. Lancez l'application en mode développement :
 
-## Learn More
+   ```bash
+   npm start
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+6. Accédez à l'application dans votre navigateur en ouvrant `http://localhost:3000`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Licence
 
-## To launch the project
+Scorekeep est distribué sous la licence GPL V3. Consultez le fichier [LICENSE](LICENSE) pour plus de détails.
 
-You will need to create a .env file with this variables :
-REACT_APP_API_SCOREKEEP_KEY : API key you register in your API
-REACT_APP_API_SCOREKEEP_URL : API URL
+## Contributions
+
+Les contributions sont les bienvenues ! Si vous souhaitez contribuer à cette application, suivez les étapes suivantes :
+
+1. Fork ce dépôt.
+2. Créez une branche pour votre fonctionnalité (`git checkout -b nouvelle-fonctionnalité`).
+3. Faites vos modifications et validez-les.
+4. Poussez vos modifications vers votre fork (`git push origin nouvelle-fonctionnalité`).
+5. Ouvrez une pull request vers ce dépôt.
+
+## Auteur
+
+Scorekeep a été créé par Bastien DA SILVA(https://bds-dev.com).
+
+## Contact
+
+Pour toute question ou commentaire, n'hésitez pas à nous contacter à [contact@scorekeep.com](mailto:contact@scorekeep.com).

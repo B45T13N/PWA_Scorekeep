@@ -17,7 +17,7 @@ export default function Layout(props: LayoutProps) {
 
     const navlinks :Array<NavlinkObject> = [
         {innerText: "Accueil",link: "/"},
-        {innerText: "Les matchs",link: "/matchs"},
+        {innerText: "Les équipes",link: "/teams"},
     ];
     if(!isAuthenticated){
         navlinks.push(

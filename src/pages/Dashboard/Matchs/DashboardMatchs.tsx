@@ -114,7 +114,6 @@ export default function DashboardMatchs() {
                     </thead>
                     <tbody>
                     {data.map((match: Match) => (
-                        // Table rows
                         <tr key={match.id}>
                             <td>{moment(match.gameDate).format('DD/MM/YYYY HH:mm')}</td>
                             <td className={'hidden-s'}>{match.visitorTeam.name}</td>

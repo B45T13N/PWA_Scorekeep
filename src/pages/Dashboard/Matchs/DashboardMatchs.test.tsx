@@ -29,7 +29,6 @@ describe('DashboardMatchs', () => {
                 total: 0,
             },
             error: null,
-            isLoading: true,
             callApi: jest.fn(),
         });
 
@@ -52,7 +51,6 @@ describe('DashboardMatchs', () => {
                 total: 0,
             },
             error: 'Error message',
-            isLoading: false,
             callApi: jest.fn(),
         });
 
@@ -84,7 +82,6 @@ describe('DashboardMatchs', () => {
                 total: 0,
             },
             error: null,
-            isLoading: false,
             callApi: jest.fn(),
         });
 
@@ -120,7 +117,6 @@ describe('DashboardMatchs', () => {
                 total: 0,
             },
             error: null,
-            isLoading: false,
             callApi: jest.fn(),
         });
 

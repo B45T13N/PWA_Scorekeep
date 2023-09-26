@@ -12,6 +12,7 @@ import DashboardMatchs from "./pages/Dashboard/Matchs/DashboardMatchs";
 import UpdateMatch from "./pages/Dashboard/UpdateMatch/UpdateMatch";
 import AddMatch from "./pages/Dashboard/AddMatch/AddMatch";
 import Volunteers from "./pages/Dashboard/Volunteers/Volunteers";
+import Teams from "./pages/Teams/Teams";
 
 function App() {
 
@@ -23,8 +24,8 @@ function App() {
                     <Route path="/" element={<Layout />}>
                         <Route index element={<Home />} />
                     </Route>
-                    <Route path="/local-teams" element={<Layout />}>
-                        <Route index element={<Home />} />
+                    <Route path="/teams" element={<Layout />}>
+                        <Route index element={<Teams />} />
                     </Route>
                     <Route path="/connexion" element={<Layout />}>
                         <Route index element={<Connexion />} />
