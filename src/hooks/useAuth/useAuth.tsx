@@ -37,6 +37,7 @@
                 if (response.status === 200) {
                     sessionStorage.setItem('loggedIn', 'true');
                     sessionStorage.setItem('localTeamId', response.data.local_team_id);
+                    apiClient.defaults.headers.common['Authorization'] = `${response.data.token_type} ${response.data.access_token}`;
                     return true;
                 } else {
                     sessionStorage.setItem('loggedIn', 'false');
@@ -52,6 +53,7 @@
         const logout = () => {
             apiClient.post('/api/logout').then(response => {
                 if (response.status === 200) {
+                    apiClient.defaults.headers.common['Authorization'] = "";
                     sessionStorage.setItem('loggedIn', 'false');
                     document.location = "/";
                 }
