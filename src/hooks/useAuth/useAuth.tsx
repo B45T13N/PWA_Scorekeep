@@ -55,6 +55,7 @@
 
         const logout = () => {
             apiClient.post('/api/logout').then(response => {
+                console.log(response);
                 apiClient.defaults.headers.common['Authorization'] = "";
                 sessionStorage.setItem('loggedIn', 'false');
                 sessionStorage.setItem('localTeamId', '');
