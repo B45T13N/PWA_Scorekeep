@@ -24,11 +24,11 @@ interface VolunteerSelectionProps {
 export default function VolunteerSelection(props: VolunteerSelectionProps) {
 
     const [selectedTimekeeper, setSelectedTimekeeper] =
-        useState(props.timekeeperId ? `${props.timekeeperId} ${props.matchId}` : "");
+        useState(props.timekeeperId ? `timekeepers ${props.timekeeperId} ${props.matchId}` : "");
     const [selectedSecretary, setSelectedSecretary] =
-        useState(props.secretaryId ? `${props.secretaryId} ${props.matchId}` : "");
+        useState(props.secretaryId ? `secretaries ${props.secretaryId} ${props.matchId}` : "");
     const [selectedRoomManager, setSelectedRoomManager] =
-        useState(props.roomManagerId ? `${props.roomManagerId} ${props.matchId}` : "");
+        useState(props.roomManagerId ? `roomManagers ${props.roomManagerId} ${props.matchId}` : "");
 
     const handleRadioSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
         let id = e.target.id;
@@ -46,9 +46,9 @@ export default function VolunteerSelection(props: VolunteerSelectionProps) {
     };
 
     const handleClickButton = (e: React.MouseEvent<HTMLButtonElement>) => {
-        let timekeeperId = selectedTimekeeper.split(" ")[0];
-        let secretaryId = selectedSecretary.split(" ")[0];
-        let roomManagerId = selectedRoomManager.split(" ")[0];
+        let timekeeperId = selectedTimekeeper.split(" ")[1];
+        let secretaryId = selectedSecretary.split(" ")[1];
+        let roomManagerId = selectedRoomManager.split(" ")[1];
         let matchId = e.currentTarget.id;
 
         apiClient.put(`/api/games/addVolunteers/${matchId}`, {
@@ -94,10 +94,10 @@ export default function VolunteerSelection(props: VolunteerSelectionProps) {
                     {props.timekeepers.map((timekeeper: Timekeeper) => (
                         <RadioInput
                             key={timekeeper.id}
-                            id={`${timekeeper.id.toString()} ${props.matchId}`}
+                            id={`timekeepers ${timekeeper.id.toString()} ${props.matchId}`}
                             name={"timekeepers"}
                             text={timekeeper.name}
-                            isSelected={selectedTimekeeper === `${timekeeper.id.toString()} ${props.matchId}`}
+                            isSelected={selectedTimekeeper === `timekeepers ${timekeeper.id.toString()} ${props.matchId}`}
                             onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {handleRadioSelect(e)}}
                         />
                     ))}
@@ -108,10 +108,10 @@ export default function VolunteerSelection(props: VolunteerSelectionProps) {
                     {props.secretaries.map((secretary: Secretary) => (
                         <RadioInput
                             key={secretary.id}
-                            id={`${secretary.id.toString()} ${props.matchId}`}
+                            id={`secretaries ${secretary.id.toString()} ${props.matchId}`}
                             name={"secretaries"}
                             text={secretary.name}
-                            isSelected={selectedSecretary === `${secretary.id.toString()} ${props.matchId}`}
+                            isSelected={selectedSecretary === `secretaries ${secretary.id.toString()} ${props.matchId}`}
                             onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {handleRadioSelect(e)}}
                         />
                     ))}
@@ -122,10 +122,10 @@ export default function VolunteerSelection(props: VolunteerSelectionProps) {
                     {props.roomManagers.map((roomManager: RoomManager) => (
                         <RadioInput
                             key={roomManager.id}
-                            id={`${roomManager.id.toString()} ${props.matchId}`}
+                            id={`roomManagers ${roomManager.id.toString()} ${props.matchId}`}
                             name={"roomManagers"}
                             text={roomManager.name}
-                            isSelected={selectedRoomManager === `${roomManager.id.toString()} ${props.matchId}`}
+                            isSelected={selectedRoomManager === `roomManagers ${roomManager.id.toString()} ${props.matchId}`}
                             onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {handleRadioSelect(e)}}
                         />
                     ))}
