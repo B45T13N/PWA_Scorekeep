@@ -48,6 +48,7 @@ export default function Connexion() {
                 setEmail(inputValue);
                 break;
             case "password":
+            case "text":
                 setPassword(inputValue);
                 break;
             default:

@@ -55,13 +55,11 @@
 
         const logout = () => {
             apiClient.post('/api/logout').then(response => {
-                if (response.status === 200) {
-                    apiClient.defaults.headers.common['Authorization'] = "";
-                    sessionStorage.setItem('loggedIn', 'false');
-                    sessionStorage.setItem('localTeamId', '');
-                    sessionStorage.setItem('Authorization', '');
-                    document.location = "/";
-                }
+                apiClient.defaults.headers.common['Authorization'] = "";
+                sessionStorage.setItem('loggedIn', 'false');
+                sessionStorage.setItem('localTeamId', '');
+                sessionStorage.setItem('Authorization', '');
+                document.location = "/";
             });
 
         };
@@ -83,8 +81,6 @@
                 sessionStorage.setItem('Authorization', '');
             }
         };
-
-        me();
 
         return (
             <AuthContext.Provider value={{ login, logout, me }}>
