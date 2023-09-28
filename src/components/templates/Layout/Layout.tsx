@@ -1,21 +1,50 @@
-import Header from "../../organisms/Header/Header";
 import './Layout.scss'
-import {Outlet} from "react-router-dom";
+import {Navigate, Outlet} from "react-router-dom";
 import {slide as Menu} from "react-burger-menu";
-import {Footer} from "../../organisms/Footer/Footer";
+import Header from "../../organisms/Header/Header";
+import Footer from "../../organisms/Footer/Footer";
+import {useAuth} from "../../../hooks/useAuth/useAuth";
+import {NavlinkObject} from "../../../interfaces/NavlinkObject";
 
-export default function Layout() {
+interface LayoutProps {
+    isAuthenticated?: boolean;
+}
+
+
+export default function Layout(props: LayoutProps) {
+    const {logout} = useAuth();
+    let isAuthenticated = sessionStorage.getItem("loggedIn") === 'true';
+
+    const navlinks :Array<NavlinkObject> = [
+        {innerText: "Accueil",link: "/"},
+        {innerText: "Les équipes",link: "/teams"},
+    ];
+    if(!isAuthenticated){
+        navlinks.push(
+            {innerText: "Se connecter",link: "/connexion"}
+        )
+    }
+
     return (
         <div className="page">
             <div id="slide">
                 <Menu>
-                    <a href="/" className={"active"}>Accueil</a>
-                    <a href="/" className={"active"}>Accueil</a>
-                    <a href="/" className={"active"}>Accueil</a>
+                    {navlinks.map((obj, key) =>
+                        <a key={key} href={obj.link}>{obj.innerText}</a>
+                    )}
+                    {isAuthenticated &&
+                        <a href="/dashboard">Dashboard</a>
+                    }
+                    {isAuthenticated &&
+                        // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                        <a href="#" onClick={logout}>Se déconnecter</a>
+                    }
                 </Menu>
             </div>
-            <Header/>
-            <Outlet />
+            <Header />
+            <main className="content">
+                {props.isAuthenticated !== false ? <Outlet/> : <Navigate to="/"/>}
+            </main>
             <Footer />
         </div>
     )
