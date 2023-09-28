@@ -64,7 +64,7 @@ export default function VolunteerSelection(props: VolunteerSelectionProps) {
                 console.error(error);
             });
     }
-    if(props.isHomeMatch){
+    if(!props.isHomeMatch){
         return (
             <tr className={"hidden-xs"}>
                 <td>
