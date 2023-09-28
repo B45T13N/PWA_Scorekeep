@@ -1,5 +1,7 @@
     import React, { createContext, useContext } from 'react';
     import apiClient from "../../services/apiClient";
+    import {Simulate} from "react-dom/test-utils";
+    import error = Simulate.error;
 
     interface AuthContextType {
         login: (email: string, password: string) => Promise<boolean>;
@@ -25,9 +27,6 @@
 
         const login = async (email: string, password: string) => {
             try {
-                // First, get the CSRF cookie
-                await apiClient.get('/sanctum/csrf-cookie');
-
                 // Then, send the login request
                 const response = await apiClient.post('/api/login', {
                     email: email,
@@ -46,6 +45,7 @@
                     return false;
                 }
             } catch (error) {
+                console.log(error);
                 sessionStorage.setItem('loggedIn', 'false');
                 sessionStorage.setItem('localTeamId', '');
                 sessionStorage.setItem('Authorization', '');
@@ -56,17 +56,23 @@
         const logout = () => {
             apiClient.post('/api/logout').then(response => {
                 console.log(response);
-                apiClient.defaults.headers.common['Authorization'] = "";
-                sessionStorage.setItem('loggedIn', 'false');
-                sessionStorage.setItem('localTeamId', '');
-                sessionStorage.setItem('Authorization', '');
-                document.location = "/";
+                if (response.status === 200) {
+                    apiClient.defaults.headers.common['Authorization'] = "";
+                    sessionStorage.setItem('loggedIn', 'false');
+                    sessionStorage.setItem('localTeamId', '');
+                    sessionStorage.setItem('Authorization', '');
+                    document.location = "/";
+                }
+            }).catch(error => {
+                console.log(error)
             });
 
         };
 
         const me = async () => {
             try{
+                await apiClient.get('/sanctum/csrf-cookie');
+
                 await apiClient.post('/api/me').then(response => {
                     if (response.status === 200) {
                         sessionStorage.setItem('loggedIn', 'true');
@@ -82,6 +88,8 @@
                 sessionStorage.setItem('Authorization', '');
             }
         };
+
+        me();
 
         return (
             <AuthContext.Provider value={{ login, logout, me }}>
