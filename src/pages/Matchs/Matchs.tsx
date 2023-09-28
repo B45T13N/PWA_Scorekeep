@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import apiClient from "../../services/apiClient";
 import {Match} from "../../interfaces/Match";
-import MatchCard from "../../components/atoms/MatchCard/MatchCard";
+import MatchCard from "../../components/organisms/MatchCard/MatchCard";
 
 export default function Matchs() {
     const { localTeamId } = useParams();
@@ -23,6 +23,8 @@ export default function Matchs() {
         })
     }, [apiUrl]);
 
+
+
     return (
         <article className="matchs-content">
             <h2>Les matchs</h2>
@@ -31,7 +33,14 @@ export default function Matchs() {
             ) : (
                 <section className={"matchs-display"}>
                     {data.map((match: Match) => (
-                        <MatchCard key={match.id} visitorTeamName={match.visitorTeam.name} category={match.category} date={match.gameDate} isHomeMatch={match.isHomeMatch}/>
+                        <MatchCard
+                            key={match.id}
+                            visitorTeamName={match.visitorTeam.name}
+                            category={match.category}
+                            gameDate={match.gameDate}
+                            isHomeMatch={match.isHomeMatch}
+                            gameId={match.id.toString()}
+                        />
                     ))}
                 </section>
             )}
