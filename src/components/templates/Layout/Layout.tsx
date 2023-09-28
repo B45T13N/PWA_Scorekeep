@@ -36,6 +36,7 @@ export default function Layout(props: LayoutProps) {
                         <a href="/dashboard">Dashboard</a>
                     }
                     {isAuthenticated &&
+                        // eslint-disable-next-line jsx-a11y/anchor-is-valid
                         <a href="#" onClick={logout}>Se déconnecter</a>
                     }
                 </Menu>
