@@ -1,7 +1,5 @@
     import React, { createContext, useContext } from 'react';
     import apiClient from "../../services/apiClient";
-    import {Simulate} from "react-dom/test-utils";
-
     interface AuthContextType {
         login: (email: string, password: string) => Promise<boolean>;
         logout: () => void;
@@ -54,7 +52,6 @@
 
         const logout = () => {
             apiClient.post('/api/logout').then(response => {
-                console.log(response);
                 if (response.status === 200) {
                     apiClient.defaults.headers.common['Authorization'] = "";
                     sessionStorage.setItem('loggedIn', 'false');

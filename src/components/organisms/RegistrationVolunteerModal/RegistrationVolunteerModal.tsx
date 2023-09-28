@@ -35,6 +35,7 @@ export default function RegistrationVolunteerModal(props: RegistrationVolunteerM
             .then((response) => {
                 if(response.status === 201){
                     console.log('Registration done');
+                    handleClose();
                 }
             })
             .catch((error) => {
@@ -95,20 +96,21 @@ export default function RegistrationVolunteerModal(props: RegistrationVolunteerM
                                     <Select onChange={handleSelectChange}/>
                                     <Input type={"text"} maxLength={30} field={"nom"} onChange={handleVisitorNameChange} />
                                     <Input type={"password"} maxLength={30} field={"mot de passe"} onChange={handlePasswordChange} />
+
+                                    <div className={"modal-actions"}>
+                                        <div className={"actions-container"}>
+                                            <button className={"confirm-btn"} onClick={handleSubmit} type={"submit"}>
+                                                S'enregistrer
+                                            </button>
+                                            <button
+                                                className={"cancel-btn"}
+                                                onClick={handleClose}
+                                            >
+                                                Annuler
+                                            </button>
+                                        </div>
+                                    </div>
                                 </form>
-                            </div>
-                            <div className={"modal-actions"}>
-                                <div className={"actions-container"}>
-                                    <button className={"confirm-btn"} onClick={handleSubmit}>
-                                        S'enregistrer
-                                    </button>
-                                    <button
-                                        className={"cancel-btn"}
-                                        onClick={handleClose}
-                                    >
-                                        Annuler
-                                    </button>
-                                </div>
                             </div>
                         </div>
                     </div>
