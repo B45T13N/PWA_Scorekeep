@@ -15,7 +15,7 @@ describe('VolunteerSelection', () => {
         matchCategory: 'Category',
         visitorTeamName: 'Visitor Team',
         matchDate: new Date(),
-        isHomeMatch: false,
+        isHomeMatch: true,
         timekeepers: [{id: 1, name: "timekeeper"}],
         roomManagers: [{id: 1, name: "roomManager"}],
         secretaries: [{id: 1, name: "secretary"}],
