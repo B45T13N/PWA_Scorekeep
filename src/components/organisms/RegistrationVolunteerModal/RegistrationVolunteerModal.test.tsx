@@ -1,8 +1,6 @@
 import React from 'react';
 import {fireEvent, render, screen} from '@testing-library/react';
 import RegistrationVolunteerModal from './RegistrationVolunteerModal';
-import apiClient from "../../../services/apiClient";
-
 
 jest.mock('../../../services/apiClient', () => ({
     get: jest.fn(),

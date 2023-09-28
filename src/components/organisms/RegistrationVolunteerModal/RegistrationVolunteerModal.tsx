@@ -19,7 +19,6 @@ export default function RegistrationVolunteerModal(props: RegistrationVolunteerM
 
     const [name, setName] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [volunteerType, setVolunteerType] = useState<string>("")
     const [APIUri, setAPIUri] = useState<string>("")
     const [error, setError] = useState<string>("")
 
@@ -53,8 +52,6 @@ export default function RegistrationVolunteerModal(props: RegistrationVolunteerM
     };
 
     const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        setVolunteerType(e.target.value);
-
         switch (e.target.value) {
             case "room-manager":
                 setAPIUri("/api/room-managers/store");
