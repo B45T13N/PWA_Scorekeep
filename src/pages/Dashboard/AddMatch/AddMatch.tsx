@@ -35,7 +35,7 @@ export default function AddMatch() {
                 gameDate: date
             }
         );
-    }, [localTeamId]);
+    }, [date, formData, isHomeMatch, localTeamId]);
 
     const handleAddressChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
