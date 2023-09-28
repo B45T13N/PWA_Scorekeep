@@ -5,6 +5,7 @@ const apiClient = axios.create({
     withCredentials: true,
     headers:{
         'Scorekeep-API-Key': process.env.REACT_APP_API_SCOREKEEP_KEY,
+        'Authorization': sessionStorage.getItem("Authorization"),
     }
 });
 
