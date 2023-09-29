@@ -24,9 +24,11 @@ const mockData = [
         timekeepers: [],
         roomManagers: [],
         secretaries: [],
+        drinkManagers: [],
         roomManager: { id: 101 },
         timekeeper: { id: 102 },
         secretary: { id: 103 },
+        drinkManager: { id: 103 },
     },
 ];
 
