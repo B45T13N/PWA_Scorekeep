@@ -1,5 +1,4 @@
 # Scorekeep
-[![Node.js CI](https://github.com/B45T13N/PWA_Scorekeep/actions/workflows/pipeline_test.yml/badge.svg)](https://github.com/B45T13N/PWA_Scorekeep/actions/workflows/pipeline_test.yml)
 
 [English Version](/README_EN.md)
 
