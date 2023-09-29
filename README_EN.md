@@ -1,5 +1,6 @@
 # Scorekeep
-[![Node.js CI](https://github.com/B45T13N/PWA_Scorekeep/actions/workflows/pipeline_test.yml/badge.svg)](https://github.com/B45T13N/PWA_Scorekeep/actions/workflows/pipeline_test.yml)
+
+(https://github.com/B45T13N/PWA_Scorekeep/actions/workflows/pipeline_test.yml)
 
 Scorekeep is an open-source web application designed to help indoor team sports associations manage member registrations for scorekeeping tables and broadcast the weekend match list. This application provides a simple and user-friendly solution to streamline the management of sports activities within your association.
 
