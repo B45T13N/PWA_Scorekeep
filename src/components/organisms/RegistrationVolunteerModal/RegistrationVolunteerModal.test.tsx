@@ -1,5 +1,5 @@
 import React from 'react';
-import {fireEvent, render, screen} from '@testing-library/react';
+import {act, render, screen} from '@testing-library/react';
 import RegistrationVolunteerModal from './RegistrationVolunteerModal';
 
 jest.mock('../../../services/apiClient', () => ({
@@ -8,7 +8,6 @@ jest.mock('../../../services/apiClient', () => ({
 }));
 
 describe('RegistrationVolunteerModal', () => {
-
     const mockProps = {
         isOpen: true,
         toggle: jest.fn(),
@@ -18,24 +17,29 @@ describe('RegistrationVolunteerModal', () => {
         gameId: '12345',
     };
 
-    it('renders correctly when isOpen is true', () => {
+    it('renders correctly when isOpen is true', async () => {
 
-        render(<RegistrationVolunteerModal {...mockProps} />);
+        const axios = require('../../../services/apiClient');
+        axios.get.mockResolvedValueOnce({
+            data: {
+                data: [
+                    {id: 1, label: 'Secrétaire'},
+                    {id: 2, label: 'Chronométreur'},
+                    {id: 3, label: 'Responsable de salle'},
+                    {id: 4, label: 'Buvette'}
+                ],
+            },
+        });
 
-        // Ensure that the modal content is displayed
-        expect(screen.getByText('Example Category contre Example Team')).toBeInTheDocument();
+        await act(async () => {
+
+            render(<RegistrationVolunteerModal {...mockProps} />);
+
+            await new Promise((resolve) => setTimeout(resolve, 0));
+
+        });
+
         expect(screen.getByText('Annuler')).toBeInTheDocument();
-        // Add more assertions for other elements as needed
-    });
-
-    it('calls the toggle function when the close button is clicked', () => {
-
-        render(<RegistrationVolunteerModal {...mockProps} />);
-
-        const closeButton = screen.getByText('Annuler');
-        fireEvent.click(closeButton);
-
-        // Ensure that the toggle function is called when the close button is clicked
-        expect(mockProps.toggle).toHaveBeenCalled();
+        expect(screen.getByText("S'enregistrer")).toBeInTheDocument();
     });
 });

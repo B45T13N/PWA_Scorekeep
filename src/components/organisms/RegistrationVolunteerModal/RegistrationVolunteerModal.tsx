@@ -1,10 +1,11 @@
 import "./RegistrationVolunteerModal.scss"
 import {ReactComponent} from "../../../assets/images/x.svg";
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import apiClient from "../../../services/apiClient";
 import {Input} from "../../atoms/Input/Input";
 import moment from "moment";
 import Select from "../../atoms/Select/Select";
+import SelectOptionsProps from "../../../interfaces/SelectOptionsProps";
 
 interface RegistrationVolunteerModalProps {
     isOpen: boolean;
@@ -21,6 +22,17 @@ export default function RegistrationVolunteerModal(props: RegistrationVolunteerM
     const [password, setPassword] = useState<string>("");
     const [volunteerTypeId, setVolunteerTypeId] = useState<string>("");
     const [error, setError] = useState<string>("");
+    const [selectOptions, setSelectOptions] = useState<Array<SelectOptionsProps>>(new Array<SelectOptionsProps>())
+
+    useEffect(() => {
+        apiClient.get('/api/volunteer-types/show-all')
+            .then(result => {
+                setSelectOptions(result.data.data);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }, []);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -62,8 +74,6 @@ export default function RegistrationVolunteerModal(props: RegistrationVolunteerM
         setError("");
     }
 
-
-
     return (
         <>
             {props.isOpen && (
@@ -84,7 +94,7 @@ export default function RegistrationVolunteerModal(props: RegistrationVolunteerM
                                     </div>
                                 )}
                                 <form className={"form-submit"} onSubmit={handleSubmit}>
-                                    <Select onChange={handleSelectChange}/>
+                                    <Select onChange={handleSelectChange} selectOptions={selectOptions}/>
                                     <Input type={"text"} maxLength={30} field={"nom"} onChange={handleVisitorNameChange} />
                                     <Input type={"password"} maxLength={30} field={"mot de passe"} onChange={handlePasswordChange} />
 
