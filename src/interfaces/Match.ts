@@ -1,8 +1,6 @@
-import {Timekeeper} from "./Timekeeper";
-import {Secretary} from "./Secretary";
-import {RoomManager} from "./RoomManager";
 import {LocalTeam} from "./LocalTeam";
 import {VisitorTeam} from "./VisitorTeam";
+import {Volunteer} from "./Volunteer";
 
 export interface Match {
     id: number,
@@ -11,12 +9,14 @@ export interface Match {
     gameDate: Date,
     isHomeMatch: boolean,
     isCancelled: boolean,
-    timekeeper?: Timekeeper,
-    secretary?: Secretary,
-    roomManager?: RoomManager,
+    timekeeper?: Volunteer,
+    secretary?: Volunteer,
+    roomManager?: Volunteer,
+    drinkManager?: Volunteer,
     roomManagers: [],
     secretaries: [],
     timekeepers: [],
+    drinkManagers: [],
     localTeam: LocalTeam,
     visitorTeam: VisitorTeam,
     visitorTeamName?: string,
