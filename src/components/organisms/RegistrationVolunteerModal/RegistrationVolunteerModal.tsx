@@ -16,11 +16,11 @@ interface RegistrationVolunteerModalProps {
 }
 
 export default function RegistrationVolunteerModal(props: RegistrationVolunteerModalProps) {
-
+    const APIUri = "/api/volunteers/store";
     const [name, setName] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [APIUri, setAPIUri] = useState<string>("")
-    const [error, setError] = useState<string>("")
+    const [volunteerTypeId, setVolunteerTypeId] = useState<string>("");
+    const [error, setError] = useState<string>("");
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -29,7 +29,8 @@ export default function RegistrationVolunteerModal(props: RegistrationVolunteerM
             {
                 "name": name,
                 "gameId": props.gameId,
-                "token": password
+                "token": password,
+                "volunteerTypeId": volunteerTypeId
             }
             )
             .then((response) => {
@@ -53,17 +54,7 @@ export default function RegistrationVolunteerModal(props: RegistrationVolunteerM
     };
 
     const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        switch (e.target.value) {
-            case "room-manager":
-                setAPIUri("/api/room-managers/store");
-                break;
-            case "secretary":
-                setAPIUri("/api/secretaries/store");
-                break;
-            case "timekeeper":
-                setAPIUri("/api/timekeepers/store");
-                break;
-        }
+        setVolunteerTypeId(e.target.value);
     };
 
     const handleClose = () => {
