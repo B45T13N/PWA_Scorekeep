@@ -23,7 +23,7 @@ describe('Matchs', () => {
                         gameDate: '2023-09-15T10:00:00Z',
                         visitorTeam: {name: 'Team A'},
                         category: 'Category A',
-                        isHomeMatch: true,
+                        isHomeMatch: false,
                     },
                 ],
             },
