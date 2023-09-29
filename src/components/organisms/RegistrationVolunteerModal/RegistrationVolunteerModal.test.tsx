@@ -31,6 +31,7 @@ describe('RegistrationVolunteerModal', () => {
             },
         });
 
+        // eslint-disable-next-line testing-library/no-unnecessary-act
         await act(async () => {
 
             render(<RegistrationVolunteerModal {...mockProps} />);
