@@ -18,4 +18,12 @@ div.match-card{
   p{
     margin: 0;
   }
+
+  p.bold{
+    font-weight: bold;
+  }
+  
+  &.no-hover{
+    cursor: auto;
+  }
 }
