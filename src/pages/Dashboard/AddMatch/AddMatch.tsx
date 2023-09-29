@@ -136,7 +136,7 @@ export default function AddMatch() {
                             ariaLabelledBy={"gameDate"}
                             name={"gameDate"}
                             showTimeSelect
-                            minDate={new Date(date.getFullYear(), date.getMonth(), date.getDate(), 8, 30)}
+                            minDate={new Date()}
                             minTime={new Date(date.getFullYear(), date.getMonth(), date.getDate(), 8, 30)}
                             maxDate={new Date(date.getFullYear()+1, date.getMonth(), date.getDate(), 22, 0)}
                             maxTime={new Date(date.getFullYear()+1, date.getMonth(), date.getDate(), 22, 0)}
