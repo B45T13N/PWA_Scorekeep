@@ -19,7 +19,7 @@ export default function Matchs() {
             })
             .catch((error) => {
             setError(true);
-            console.log(error);
+            console.log("Erreur lors de la récupération des matchs");
         })
     }, [apiUrl]);
 
@@ -30,7 +30,7 @@ export default function Matchs() {
             <h2>Les matchs</h2>
             {data.length === 0 ? (
                     error ?
-                        <p>Erreur lors du chargements des données</p>
+                        <p>Erreur lors de la récupération des données</p>
                         :
                         <p>Pas de matchs disponibles</p>
             )

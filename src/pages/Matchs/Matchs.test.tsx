@@ -50,7 +50,7 @@ describe('Matchs', () => {
             <Matchs />
         );
         await waitFor(() => {
-            expect(screen.getByText('Erreur lors de la récupération des équipes')).toBeInTheDocument();
+            expect(screen.getByText('Erreur lors de la récupération des données')).toBeInTheDocument();
         });
 
     });
