@@ -1,5 +1,5 @@
 import './Matchs.scss'
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import apiClient from "../../services/apiClient";
 import {Match} from "../../interfaces/Match";
@@ -28,9 +28,13 @@ export default function Matchs() {
     return (
         <article className="matchs-content">
             <h2>Les matchs</h2>
-            {error ? (
-                <p>Erreur lors de la récupération des équipes</p>
-            ) : (
+            {data.length === 0 ? (
+                    error ?
+                        <p>Erreur lors du chargements des données</p>
+                        :
+                        <p>Pas de matchs disponibles</p>
+            )
+            : (
                 <section className={"matchs-display"}>
                     {data.map((match: Match) => (
                         <MatchCard
