@@ -16,12 +16,14 @@ describe('VolunteerSelection', () => {
         visitorTeamName: 'Visitor Team',
         matchDate: new Date(),
         isHomeMatch: true,
-        timekeepers: [{id: 1, name: "timekeeper"}],
-        roomManagers: [{id: 1, name: "roomManager"}],
-        secretaries: [{id: 1, name: "secretary"}],
+        timekeepers: [{id: 1, name: "timekeeper", volunteerTypeId: 1}],
+        roomManagers: [{id: 1, name: "roomManager", volunteerTypeId: 2}],
+        secretaries: [{id: 1, name: "secretary", volunteerTypeId: 3}],
+        drinkManagers: [{id: 1, name: "drinkManager", volunteerTypeId: 4}],
         timekeeperId: 2,
         secretaryId: 3,
         roomManagerId: 4,
+        drinkManagerId: 4,
     };
 
     it('renders without crashing', () => {
@@ -101,6 +103,7 @@ describe('VolunteerSelection', () => {
                 timekeeperId: `${mockProps.timekeeperId}`,
                 secretaryId: `${mockProps.secretaryId}`,
                 roomManagerId: `${mockProps.roomManagerId}`,
+                drinkManagerId: `${mockProps.drinkManagerId}`,
             }
         );
         expect(logSpy).toHaveBeenCalledWith('Match updated successfully');

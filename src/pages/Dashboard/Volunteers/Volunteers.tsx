@@ -30,6 +30,7 @@ export default function Volunteers() {
                         <th>Chronométreurs</th>
                         <th>Secrétaires</th>
                         <th>Responsable de salle</th>
+                        <th>Buvette</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -45,9 +46,11 @@ export default function Volunteers() {
                             timekeepers={match.timekeepers}
                             roomManagers={match.roomManagers}
                             secretaries={match.secretaries}
+                            drinkManagers={match.drinkManagers}
                             roomManagerId={match.roomManager?.id}
                             timekeeperId={match.timekeeper?.id}
                             secretaryId={match.secretary?.id}
+                            drinkManagerId={match.drinkManager?.id}
                         />
                     ))}
                     </tbody>

@@ -9,6 +9,7 @@ article.volunteers {
   background: $card-background;
   border-radius: $border-radius;
   box-shadow: $box-shadow;
+  overflow: auto;
 
   table {
     margin: 0 auto;
