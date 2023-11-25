@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useState} from 'react';
+import React, {createContext, useContext, useEffect, useState} from 'react';
 import apiClient from "../../services/apiClient";
 
 interface AuthContextType {
@@ -24,6 +24,7 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
     const login = async (email: string, password: string) => {
         try {
             // Then, send the login request
@@ -68,21 +69,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     const me = async () => {
         try{
-            await apiClient.get('/sanctum/csrf-cookie');
-
             await apiClient.post('/api/me').then(response => {
                 if (response.status === 200) {
-                    sessionStorage.setItem('loggedIn', 'true');
                     setIsAuthenticated(true);
                 } else {
-                    sessionStorage.setItem('loggedIn', 'false');
                     sessionStorage.setItem('localTeamId', '');
                     sessionStorage.setItem('Authorization', '');
                     setIsAuthenticated(false);
                 }
             });
         } catch (error) {
-            sessionStorage.setItem('loggedIn', 'false');
             sessionStorage.setItem('localTeamId', '');
             sessionStorage.setItem('Authorization', '');
             setIsAuthenticated(false);

@@ -1,4 +1,5 @@
 import "./FooterLink.scss"
+import Link from "next/link";
 
 interface FooterLinkProps {
     link: string,
@@ -7,6 +8,6 @@ interface FooterLinkProps {
 
 export const FooterLink = (props: FooterLinkProps) => {
     return (
-        <a className={"footer-link"} href={props.link} about={`Lien vers ${props.innerText}`}>{props.innerText}</a>
+        <Link className={"footer-link"} href={props.link} about={`Lien vers ${props.innerText}`}>{props.innerText}</Link>
     );
 };

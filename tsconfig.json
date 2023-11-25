@@ -29,6 +29,15 @@
       "@/pages/*": [
         "pages/*"
       ],
+      "@/services/*": [
+        "app/services/*"
+      ],
+      "@/interfaces/*": [
+        "app/interfaces/*"
+      ],
+      "@/hooks/*": [
+        "app/hooks/*"
+      ],
       "@/images/*": [
         "public/images/*"
       ],

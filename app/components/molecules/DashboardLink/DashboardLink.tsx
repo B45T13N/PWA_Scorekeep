@@ -1,4 +1,5 @@
 import "./DashboardLink.scss"
+import Link from "next/link";
 
 interface DashboardLinkProps {
     innerText: string,
@@ -6,10 +7,10 @@ interface DashboardLinkProps {
 }
 export const DashboardLink = (props: DashboardLinkProps) => {
     return (
-        <a href={props.link} about={`Lien vers ${props.innerText}`} className={"dashboard-link"}>
+        <Link href={props.link} about={`Lien vers ${props.innerText}`} className={"dashboard-link"}>
             <p>
                 {props.innerText}
             </p>
-        </a>
+        </Link>
     );
 };

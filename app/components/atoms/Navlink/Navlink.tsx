@@ -1,5 +1,6 @@
 import "./Navlink.scss"
 import {useEffect, useState} from "react";
+import Link from "next/link";
 
 interface NavlinkProps {
     innerText: string,
@@ -15,8 +16,8 @@ export const Navlink = (props : NavlinkProps) => {
     }, [props.isActive]);
 
     return (
-        <a href={props.link} about={`Lien de navigation pour : ${props.innerText.toLowerCase()}`} className={`navlink ${className}`}>
+        <Link href={props.link} about={`Lien de navigation pour : ${props.innerText.toLowerCase()}`} className={`navlink ${className}`}>
             {props.innerText}
-        </a>
+        </Link>
     );
 };

@@ -1,4 +1,5 @@
 import "./TeamCard.scss"
+import Link from "next/link";
 
 interface TeamCardProps {
     teamName: string,
@@ -8,11 +9,11 @@ interface TeamCardProps {
 
 export default function TeamCard(props: TeamCardProps) {
     return (
-        <a href={props.link}>
+        <Link href={props.link}>
             <div className={"team-card"}>
                 <img src={props.logoPath} alt="Logo de l'équipe" height={80} width={80}/>
                 <p>{props.teamName}</p>
             </div>
-        </a>
+        </Link>
     )
 }

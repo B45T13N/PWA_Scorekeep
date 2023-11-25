@@ -1,4 +1,5 @@
 import '@/pages/index.scss'
+import Link from "next/link";
 
 export default function Dashboard() {
     return (
@@ -34,9 +35,9 @@ export default function Dashboard() {
                 <p>
                     Si toutefois vous souhaitez inscrire votre association afin de bénéficier de cette application, n’hésitez pas à me contacter.
                 </p>
-                <a href={"mailto:contact@scorekeep.org"} about={"Me contacter par e-mail"}>
+                <Link href={"mailto:contact@scorekeep.org"} about={"Me contacter par e-mail"}>
                     contact@scorekeep.org
-                </a>
+                </Link>
                 <p>
                     DoWeDev
                 </p>

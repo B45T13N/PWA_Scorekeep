@@ -11,6 +11,7 @@ export default function Matchs() {
     const { localTeamId } = router.query;
 
     const apiUrl = `${process.env.NEXT_PUBLIC_API_SCOREKEEP_URL}/api/weekGames?local_team_id=${localTeamId}`;
+    console.log(apiUrl);
     const [error, setError] = useState<boolean>(false);
     const [data, setData] = useState([]);
 

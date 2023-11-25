@@ -1,5 +1,6 @@
 import "./Logout.scss"
 import {useAuth} from "@/app/hooks/useAuth/useAuth";
+import Link from "next/link";
 
 export const Logout = () => {
 
@@ -7,8 +8,8 @@ export const Logout = () => {
 
     return (
         // eslint-disable-next-line jsx-a11y/anchor-is-valid
-        <a href="#" about="Lien de navigation pour se déconnecter" className={`navlink`} onClick={logout}>
+        <Link href="#" about="Lien de navigation pour se déconnecter" className={`navlink`} onClick={logout}>
             Se déconnecter
-        </a>
+        </Link>
     );
 };
