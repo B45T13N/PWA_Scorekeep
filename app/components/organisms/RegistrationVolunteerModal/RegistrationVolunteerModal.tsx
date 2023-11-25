@@ -1,11 +1,11 @@
 import "./RegistrationVolunteerModal.scss"
-import {ReactComponent} from "../../../assets/images/x.svg";
 import React, {ChangeEvent, useEffect, useState} from "react";
 import apiClient from "../../../services/apiClient";
 import {Input} from "../../atoms/Input/Input";
 import moment from "moment";
 import Select from "../../atoms/Select/Select";
 import SelectOptionsProps from "../../../interfaces/SelectOptionsProps";
+import Image from "next/image";
 
 interface RegistrationVolunteerModalProps {
     isOpen: boolean;
@@ -85,7 +85,12 @@ export default function RegistrationVolunteerModal(props: RegistrationVolunteerM
                                 <p>{moment(props.gameDate).format('DD/MM/YYYY HH:mm')}</p>
                             </div>
                             <div className={"close-btn"} onClick={handleClose}>
-                                <ReactComponent />
+                                <Image
+                                    alt={"Fermer la fenêtre"}
+                                    src={'@/images/x.svg'}
+                                    height={32}
+                                    width={32}
+                                    />
                             </div>
                             <div className={"error"}>
                                 {error && (

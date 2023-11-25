@@ -1,8 +1,8 @@
 import React from 'react';
 import {act, render, screen} from '@testing-library/react';
-import RegistrationVolunteerModal from './RegistrationVolunteerModal';
+import RegistrationVolunteerModal from '@/components/organisms/RegistrationVolunteerModal/RegistrationVolunteerModal';
 
-jest.mock('../../../services/apiClient', () => ({
+jest.mock('../app/services/apiClient', () => ({
     get: jest.fn(),
     post: jest.fn(),
 }));
@@ -19,7 +19,7 @@ describe('RegistrationVolunteerModal', () => {
 
     it('renders correctly when isOpen is true', async () => {
 
-        const axios = require('../../../services/apiClient');
+        const axios = require('../app/services/apiClient');
         axios.get.mockResolvedValueOnce({
             data: {
                 data: [
@@ -40,7 +40,7 @@ describe('RegistrationVolunteerModal', () => {
 
         });
 
-        expect(screen.getByText('Annuler')).toBeInTheDocument();
-        expect(screen.getByText("S'enregistrer")).toBeInTheDocument();
+        expect(screen.getByText('Annuler')).toBeTruthy();
+        expect(screen.getByText("S'enregistrer")).toBeTruthy();
     });
 });

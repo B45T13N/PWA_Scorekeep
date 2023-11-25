@@ -1,0 +1,42 @@
+@import "styles/variables";
+
+div.connexion-form{
+  width: min(80vw, 500px);
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background: $card-background;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+
+  form{
+    height: 80%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    .buttons{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+  }
+
+}
+
+@media (max-width : $layout-breakpoint-extra-small) {
+  div.connexion-form{
+    form{
+      .buttons{
+        flex-direction: column;
+        width: 80%;
+        button{
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+}

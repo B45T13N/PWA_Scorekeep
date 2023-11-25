@@ -1,0 +1,29 @@
+@import "styles/variables";
+
+article.home-content{
+  margin: 15px auto;
+  padding: 20px;
+  width: 80%;
+  min-height: inherit;
+  display: flex;
+  flex-direction: column;
+  background: $card-background;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+
+  h2{
+    text-align: center;
+  }
+
+  section{
+    text-align: justify;
+  }
+
+  section.main-paragraph{
+    margin-bottom: 40px;
+  }
+
+  section.footer-paragraph{
+    font-weight: bold;
+  }
+}

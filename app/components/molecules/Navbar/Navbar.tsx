@@ -1,22 +1,27 @@
+'use client';
 import './Navbar.scss'
 import {Navlink} from "../../atoms/Navlink/Navlink";
 import {Logout} from "../../atoms/Logout/Logout";
 import {NavlinkObject} from "../../../interfaces/NavlinkObject";
+import {useAuth} from "@/app/hooks/useAuth/useAuth";
+import {useRouter} from "next/router";
 
 export default function Navbar() {
-    let isAuthenticated = sessionStorage.getItem("loggedIn") === 'true';
+
+    const {isAuthenticated} = useAuth();
 
     const navlinks :Array<NavlinkObject> = [
         {innerText: "Accueil",link: "/"},
         {innerText: "Les équipes",link: "/teams"},
     ];
+
     if(!isAuthenticated){
         navlinks.push(
             {innerText: "Se connecter",link: "/connexion"}
         )
     }
 
-    const url :string = window.location.pathname;
+    const url = useRouter().pathname;
 
     return (
          <nav data-testid={"navbar"}>

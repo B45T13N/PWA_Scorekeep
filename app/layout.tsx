@@ -5,21 +5,23 @@ import Header from "./components/organisms/Header/Header";
 import Footer from "./components/organisms/Footer/Footer";
 import {useAuth} from "./hooks/useAuth/useAuth";
 import {NavlinkObject} from "./interfaces/NavlinkObject";
+import {ReactNode} from "react";
+import {useRouter} from "next/router";
+import * as console from "console";
 
 interface LayoutProps {
-    isAuthenticated?: boolean;
+    children: ReactNode;
 }
-
-
 export default function Layout(props: LayoutProps) {
-    const {logout} = useAuth();
-    let isAuthenticated = sessionStorage.getItem("loggedIn") === 'true';
+    const {logout, isAuthenticated} = useAuth();
+    const router = useRouter();
 
     const navlinks :Array<NavlinkObject> = [
         {innerText: "Accueil",link: "/"},
         {innerText: "Les équipes",link: "/teams"},
     ];
-    if(!isAuthenticated){
+
+    if(true){
         navlinks.push(
             {innerText: "Se connecter",link: "/connexion"}
         )
@@ -36,14 +38,13 @@ export default function Layout(props: LayoutProps) {
                         <a href="/dashboard">Dashboard</a>
                     }
                     {isAuthenticated &&
-                        // eslint-disable-next-line jsx-a11y/anchor-is-valid
                         <a href="#" onClick={logout}>Se déconnecter</a>
                     }
                 </Menu>
             </div>
             <Header />
             <main className="content">
-                {props.isAuthenticated !== false ? <Outlet/> : <Navigate to="/"/>}
+                {props.children}
             </main>
             <Footer />
         </div>

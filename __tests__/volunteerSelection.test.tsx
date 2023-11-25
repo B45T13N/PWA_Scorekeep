@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import VolunteerSelection from './VolunteerSelection';
-import apiClient from "../../../services/apiClient";
+import VolunteerSelection from '@/components/organisms/VolunteerSelection/VolunteerSelection';
+import apiClient from "@/app/services/apiClient";
 
 
-jest.mock('../../../services/apiClient', () => ({
+jest.mock('../app/services/apiClient', () => ({
     get: jest.fn(),
     put: jest.fn(),
 }));

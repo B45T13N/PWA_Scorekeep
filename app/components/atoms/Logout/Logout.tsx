@@ -1,5 +1,5 @@
 import "./Logout.scss"
-import {useAuth} from "../../../hooks/useAuth/useAuth";
+import {useAuth} from "@/app/hooks/useAuth/useAuth";
 
 export const Logout = () => {
 

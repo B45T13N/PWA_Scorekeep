@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import RadioInput from "./RadioInput";
+import '@testing-library/jest-dom';
+import RadioInput from "@/components/atoms/RadioInput/RadioInput";
 
 describe("RadioInputComponent", () => {
     test('renders radio input', () => {
@@ -10,12 +11,12 @@ describe("RadioInputComponent", () => {
 
         render(<RadioInput id={"1"} text={"turtle"} name={"turtles"} isSelected={true} onSelect={handleRadioSelect} />);
         const label = screen.getByText(/turtle/i);
-        expect(label).toBeInTheDocument();
+        expect(label).toBeTruthy();
         expect(label).toHaveAttribute("for", "1");
 
         const div = screen.getByTestId("parent-div")
 
-        expect(div).toBeInTheDocument();
+        expect(div).toBeTruthy();
         expect(div).toHaveClass("radio-input")
     });
 })

@@ -21,10 +21,16 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": [
-        "components/*"
+        "app/components/*"
+      ],
+      "@/app/*": [
+        "app/*"
       ],
       "@/pages/*": [
         "pages/*"
+      ],
+      "@/images/*": [
+        "public/images/*"
       ],
       "@/styles/*": [
         "styles/*"
@@ -45,5 +51,6 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "types": ["jest"]
 }
