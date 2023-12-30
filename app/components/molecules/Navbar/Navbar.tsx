@@ -9,7 +9,6 @@ import {useRouter} from "next/router";
 export default function Navbar() {
 
     const {isAuthenticated} = useAuth();
-
     const navlinks :Array<NavlinkObject> = [
         {innerText: "Accueil",link: "/"},
         {innerText: "Les équipes",link: "/teams"},

@@ -8,12 +8,16 @@
     "test:ci": "jest --ci"
   },
   "dependencies": {
+    "@types/js-cookie": "^3.0.6",
+    "@types/react-datepicker": "^4.19.4",
     "axios": "^1.5.1",
+    "js-cookie": "^3.0.5",
     "moment": "^2.29.4",
     "next": "latest",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-burger-menu": "^3.0.9",
+    "react-datepicker": "^4.25.0",
     "react-dom": "^18.2.0",
     "server-only": "^0.0.1"
   },

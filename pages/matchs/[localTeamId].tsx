@@ -10,22 +10,24 @@ export default function Matchs() {
     const router = useRouter();
     const { localTeamId } = router.query;
 
-    const apiUrl = `${process.env.NEXT_PUBLIC_API_SCOREKEEP_URL}/api/weekGames?local_team_id=${localTeamId}`;
-    console.log(apiUrl);
+    const apiUrl = `/api/weekGames?local_team_id=${localTeamId}`;
     const [error, setError] = useState<boolean>(false);
     const [data, setData] = useState([]);
 
 
     useEffect(() => {
-        apiClient.get(apiUrl)
-            .then((result) =>{
-                setData(result.data.data)
-            })
-            .catch((error) => {
-                setError(true);
-                console.log("Erreur lors de la récupération des matchs");
-            })
-    }, [apiUrl]);
+        if(localTeamId != undefined)
+        {
+            apiClient.get(apiUrl)
+                .then((result) =>{
+                    setData(result.data.data)
+                })
+                .catch((error) => {
+                    setError(true);
+                    console.log("Erreur lors de la récupération des matchs");
+                })
+        }
+    }, [apiUrl, localTeamId]);
 
 
 

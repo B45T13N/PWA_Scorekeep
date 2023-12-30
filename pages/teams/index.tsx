@@ -5,7 +5,7 @@ import {useEffect} from "react";
 import {LocalTeam} from "@/interfaces/LocalTeam";
 
 export default function Teams() {
-    const apiUrl = `${process.env.NEXT_PUBLIC_API_SCOREKEEP_URL}/api/local-teams`;
+    const apiUrl = `/api/local-teams`;
     const { data, error, callApi } = useApi();
 
     useEffect(() => {

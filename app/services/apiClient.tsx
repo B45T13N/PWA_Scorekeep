@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const apiClient = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_SCOREKEEP_URL,
@@ -13,7 +14,7 @@ export const getCSRFToken = async () => {
 };
 
 apiClient.interceptors.request.use((config) => {
-    const authorizationToken = sessionStorage.getItem('Authorization');
+    const authorizationToken = Cookies.get('token');
 
     if (authorizationToken) {
         config.headers['Authorization'] = authorizationToken;

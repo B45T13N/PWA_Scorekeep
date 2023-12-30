@@ -1,11 +1,14 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
 import apiClient from "../../services/apiClient";
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
 
 interface AuthContextType {
     login: (email: string, password: string) => Promise<boolean>;
     logout: () => void;
     me: () => void;
     isAuthenticated: boolean;
+    localTeamId: number | undefined;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -23,70 +26,102 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+    const router = useRouter();
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+    const [localTeamId, setLocalTeamId] = useState<number | undefined>(undefined);
+
+    useEffect(() => {
+        async function loadUserFromCookies() {
+            const token = Cookies.get('token')
+            if (token) {
+                apiClient.defaults.headers.Authorization = `Bearer ${token}`
+                await apiClient.post('api/me').then((response) =>{
+                    setIsAuthenticated(true);
+                    setLocalTeamId(parseInt(Cookies.get('localTeamId') ?? ''));
+                }).catch(() => {
+                    clearCookies();
+                    if(router.pathname.startsWith('/dashboard'))
+                    {
+                        router.push('/connexion');
+                    }
+                })
+            } else {
+                if(router.pathname.startsWith('/dashboard'))
+                {
+                    router.push('/connexion');
+                }
+            }
+        }
+
+        loadUserFromCookies()
+    }, [])
+
+
+    const setCookies = (token: string, localTeamId: number) => {
+        Cookies.set('token', token, { expires: 1 });
+        Cookies.set('localTeamId', localTeamId.toString(), { expires: 1 });
+    };
+
+    const clearCookies = () => {
+        Cookies.remove('token');
+        Cookies.remove('localTeamId');
+    };
 
     const login = async (email: string, password: string) => {
         try {
-            // Then, send the login request
-            const response = await apiClient.post('/api/login', {
-                email: email,
-                password: password,
-            });
-
+            const response = await apiClient.post('/api/login', { email, password });
             if (response.status === 200) {
-                sessionStorage.setItem('localTeamId', response.data.local_team_id);
-                sessionStorage.setItem('Authorization', `${response.data.token_type} ${response.data.access_token}`);
+                setLocalTeamId(response.data.local_team_id);
+                const token = `${response.data.token_type} ${response.data.access_token}`;
+                setCookies(token, response.data.local_team_id);
                 setIsAuthenticated(true);
                 return true;
             } else {
-                sessionStorage.setItem('localTeamId', '');
-                sessionStorage.setItem('Authorization', '');
+                clearCookies();
                 setIsAuthenticated(false);
                 return false;
             }
         } catch (error) {
             console.log(error);
-            sessionStorage.setItem('localTeamId', '');
-            sessionStorage.setItem('Authorization', '');
+            clearCookies();
             setIsAuthenticated(false);
             return false;
         }
     };
 
-    const logout = () => {
-        apiClient.post('/api/logout').then(response => {
+    const logout = async () => {
+        try {
+            const response = await apiClient.post('/api/logout');
             if (response.status === 200) {
-                apiClient.defaults.headers.common['Authorization'] = "";
-                sessionStorage.setItem('localTeamId', '');
-                sessionStorage.setItem('Authorization', '');
+                clearCookies();
                 setIsAuthenticated(false);
             }
-        }).catch(error => {
-            console.log(error)
-        });
-
-    };
-
-    const me = async () => {
-        try{
-            await apiClient.post('/api/me').then(response => {
-                if (response.status === 200) {
-                    setIsAuthenticated(true);
-                } else {
-                    sessionStorage.setItem('localTeamId', '');
-                    sessionStorage.setItem('Authorization', '');
-                    setIsAuthenticated(false);
-                }
-            });
         } catch (error) {
-            sessionStorage.setItem('localTeamId', '');
-            sessionStorage.setItem('Authorization', '');
-            setIsAuthenticated(false);
+            console.log(error);
         }
     };
 
+    const me = () => {
+        apiClient.post('/api/me').then(
+            (response) => {
+                if (response.status === 200) {
+                    setLocalTeamId(response.data.user.localTeamId);
+                    setIsAuthenticated(true);
+                } else {
+                    clearCookies();
+                    setIsAuthenticated(false);
+                }
+            }
+        ).catch(
+            (error) => {
+                clearCookies();
+                setIsAuthenticated(false);
+            }
+        );
+    };
+
     return (
-        <AuthContext.Provider value={{ login, logout, me, isAuthenticated }}>
+        <AuthContext.Provider value={{ login, logout, me, isAuthenticated, localTeamId}}>
             {children}
         </AuthContext.Provider>
     );
