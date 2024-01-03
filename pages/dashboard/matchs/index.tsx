@@ -8,8 +8,8 @@ import './dashboardMatchs.scss';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {useAuth} from "@/hooks/useAuth/useAuth";
-import {da} from "date-fns/locale";
 import {useRouter} from "next/router";
+import {useAuthRedirect} from "@/hooks/useAuthRedirect/useAuthRedirect";
 
 export default function DashboardMatchs() {
 
@@ -167,3 +167,5 @@ export default function DashboardMatchs() {
         </article>
     );
 }
+
+export const getServerSideProps = useAuthRedirect;

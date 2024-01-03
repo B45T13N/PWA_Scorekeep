@@ -2,7 +2,7 @@
 import './Navbar.scss'
 import {Navlink} from "../../atoms/Navlink/Navlink";
 import {Logout} from "../../atoms/Logout/Logout";
-import {NavlinkObject} from "../../../interfaces/NavlinkObject";
+import {NavlinkObject} from "@/interfaces/NavlinkObject";
 import {useAuth} from "@/app/hooks/useAuth/useAuth";
 import {useRouter} from "next/router";
 

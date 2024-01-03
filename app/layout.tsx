@@ -7,7 +7,6 @@ import {useAuth} from "./hooks/useAuth/useAuth";
 import {NavlinkObject} from "./interfaces/NavlinkObject";
 import {ReactNode} from "react";
 import Link from "next/link";
-import {useRouter} from "next/router";
 
 interface LayoutProps {
     children: ReactNode;

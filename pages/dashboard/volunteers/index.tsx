@@ -4,6 +4,7 @@ import useApi from "@/hooks/useApi/useApi";
 import {Match} from "@/interfaces/Match";
 import VolunteerSelection from "@/components/organisms/VolunteerSelection/VolunteerSelection";
 import Cookies from "js-cookie";
+import {useAuthRedirect} from "@/hooks/useAuthRedirect/useAuthRedirect";
 
 export default function Volunteers() {
     const apiUrl = `/api/weekGames`;
@@ -61,3 +62,5 @@ export default function Volunteers() {
         </article>
     );
 }
+
+export const getServerSideProps = useAuthRedirect;

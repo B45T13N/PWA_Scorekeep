@@ -7,6 +7,7 @@ import {useRouter} from "next/router";
 import apiClient from "@/services/apiClient";
 import {Input} from "@/components/atoms/Input/Input";
 import Link from "next/link";
+import {useAuthRedirect} from "@/hooks/useAuthRedirect/useAuthRedirect";
 
 export default function UpdateMatch() {
     const router = useRouter();
@@ -136,3 +137,5 @@ export default function UpdateMatch() {
         </article>
     );
 }
+
+export const getServerSideProps = useAuthRedirect;

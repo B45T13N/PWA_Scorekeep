@@ -10,6 +10,7 @@ import {Input} from "@/components/atoms/Input/Input";
 import Link from 'next/link';
 import {useRouter} from "next/router";
 import Cookies from "js-cookie";
+import {useAuthRedirect} from "@/hooks/useAuthRedirect/useAuthRedirect";
 
 
 export default function AddMatch() {
@@ -164,3 +165,4 @@ export default function AddMatch() {
         </article>
     );
 }
+export const getServerSideProps = useAuthRedirect;
