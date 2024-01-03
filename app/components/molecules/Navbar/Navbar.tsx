@@ -16,7 +16,7 @@ export default function Navbar() {
 
     if(!isAuthenticated){
         navlinks.push(
-            {innerText: "Se connecter",link: "/connexion"}
+            {innerText: "Se connecter",link: "/login"}
         )
     }
 

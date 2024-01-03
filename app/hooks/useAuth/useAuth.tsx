@@ -42,13 +42,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                     clearCookies();
                     if(router.pathname.startsWith('/dashboard'))
                     {
-                        router.push('/connexion');
+                        router.push('/login');
                     }
                 })
             } else {
                 if(router.pathname.startsWith('/dashboard'))
                 {
-                    router.push('/connexion');
+                    router.push('/login');
                 }
             }
         }
@@ -95,6 +95,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             if (response.status === 200) {
                 clearCookies();
                 setIsAuthenticated(false);
+                router.push('/');
             }
         } catch (error) {
             console.log(error);

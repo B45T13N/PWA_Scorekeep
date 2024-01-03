@@ -7,12 +7,15 @@ import {useAuth} from "./hooks/useAuth/useAuth";
 import {NavlinkObject} from "./interfaces/NavlinkObject";
 import {ReactNode} from "react";
 import Link from "next/link";
+import {useRouter} from "next/router";
 
 interface LayoutProps {
     children: ReactNode;
 }
 export default function Layout(props: LayoutProps) {
     const {logout, isAuthenticated} = useAuth();
+
+    const router = useRouter();
 
     const navlinks :Array<NavlinkObject> = [
         {innerText: "Accueil",link: "/"},
@@ -21,8 +24,12 @@ export default function Layout(props: LayoutProps) {
 
     if(!isAuthenticated){
         navlinks.push(
-            {innerText: "Se connecter",link: "/connexion"}
+            {innerText: "Se connecter",link: "/login"}
         )
+        if(router.pathname.startsWith('/dashboard'))
+        {
+            router.push('/login');
+        }
     }
 
     return (

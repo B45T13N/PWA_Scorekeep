@@ -1,6 +1,6 @@
-import './connexion.scss'
+import './login.scss'
 import {useEffect, useState} from "react";
-import {useAuth} from "../../app/hooks/useAuth/useAuth";
+import {useAuth} from "@/hooks/useAuth/useAuth";
 import {Input} from '@/components/atoms/Input/Input';
 import {Button} from "@/components/atoms/Button/Button";
 import {useRouter} from "next/router";
