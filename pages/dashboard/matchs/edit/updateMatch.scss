@@ -1,6 +1,6 @@
 @import "styles/global";
 
-article.add-match{
+article.update-match{
   min-height: 60vh;
   margin: 20px 0;
   width: 90%;
@@ -14,7 +14,7 @@ article.add-match{
       display: flex;
       flex-direction: column;
       width: 80%;
-      margin: 5px auto 15px auto;
+      margin: 20px auto;
 
       label{
         text-align: left;
@@ -34,13 +34,8 @@ article.add-match{
       }
     }
 
-    fieldset{
-      width: 80%;
-      margin: 10px auto;
-
-      legend{
-        text-align: left;
-      }
+    span.error{
+      color: $input-error-color;
     }
 
     .input-container{
