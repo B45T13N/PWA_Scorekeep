@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import "./AddMatch.scss"
+import "./addMatch.scss"
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
@@ -117,7 +117,7 @@ export default function AddMatch() {
     };
 
     return (
-        <article className={"update-match"}>
+        <article className={"add-match"}>
             <h2>Ajout d'un match</h2>
             <form onSubmit={handleSubmit}>
                 <fieldset>
