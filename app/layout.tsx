@@ -15,8 +15,6 @@ interface LayoutProps {
 export default function Layout(props: LayoutProps) {
     const {logout, isAuthenticated} = useAuth();
 
-    const router = useRouter();
-
     const navlinks :Array<NavlinkObject> = [
         {innerText: "Accueil",link: "/"},
         {innerText: "Les équipes",link: "/teams"},
@@ -26,10 +24,6 @@ export default function Layout(props: LayoutProps) {
         navlinks.push(
             {innerText: "Se connecter",link: "/login"}
         )
-        if(router.pathname.startsWith('/dashboard'))
-        {
-            router.push('/login');
-        }
     }
 
     return (

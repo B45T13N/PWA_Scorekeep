@@ -45,11 +45,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                         router.push('/login');
                     }
                 })
-            } else {
-                if(router.pathname.startsWith('/dashboard'))
-                {
-                    router.push('/login');
-                }
             }
         }
 

@@ -1,12 +1,14 @@
 import './dashboard.scss'
 import {DashboardLink} from "@/components/molecules/DashboardLink/DashboardLink";
+import {NextPage} from "next";
+import {useAuthRedirect} from "@/hooks/useAuthRedirect/useAuthRedirect";
 
 interface DashboardLinks {
     innerText: string,
     link: string
 }
 
-export default function Dashboard() {
+const Dashboard: NextPage = () => {
     const dashboardLinks :Array<DashboardLinks> = [
         {innerText: "Gestion des matchs",link: "/dashboard/matchs"},
         {innerText: "Gestion des bénévoles",link: "/dashboard/volunteers"},
@@ -23,3 +25,6 @@ export default function Dashboard() {
         </section>
     )
 }
+export const getServerSideProps = useAuthRedirect;
+
+export default Dashboard;
