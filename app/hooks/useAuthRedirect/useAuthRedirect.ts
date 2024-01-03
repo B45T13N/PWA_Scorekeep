@@ -15,34 +15,6 @@ export const useAuthRedirect: GetServerSideProps = async (context) => {
                 permanent: false,
             },
         };
-    } else if(token && localTeamId)
-    {
-        try {
-            const response = await fetch(uri, {
-                method: 'POST',
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            if (response.status === 200) {
-                return { props: {} };
-            } else {
-                return {
-                    redirect: {
-                        destination: '/login',
-                        permanent: false,
-                    },
-                };
-            }
-        } catch (error) {
-            return {
-                redirect: {
-                    destination: '/login',
-                    permanent: false,
-                },
-            };
-        }
     }
 
     return { props: {} };
