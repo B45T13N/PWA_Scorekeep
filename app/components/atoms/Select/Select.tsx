@@ -15,8 +15,8 @@ export default function Select(props: SelectProps) {
     return (
         <select data-testid={"select"} name="volunteer-type" id="volunteer-type" onChange={props.onChange}>
             <option value="">Sélectionner le type de poste</option>
-            {props.selectOptions.map((option, key) => (
-                <option key={key} value={option.id}>{option.label}</option>
+            {props.selectOptions.map((option: any, key) => (
+                <option key={key} value={option.uuid}>{option.label}</option>
             ))}
         </select>
     )

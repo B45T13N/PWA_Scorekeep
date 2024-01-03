@@ -3,6 +3,7 @@ import TeamCard from "@/components/atoms/TeamCard/TeamCard";
 import useApi from "@/hooks/useApi/useApi";
 import {useEffect} from "react";
 import {LocalTeam} from "@/interfaces/LocalTeam";
+import {da} from "date-fns/locale";
 
 export default function Teams() {
     const apiUrl = `/api/local-teams`;
@@ -20,7 +21,7 @@ export default function Teams() {
             ) : (
                 <section className={"teams-display"}>
                     {data.map((localTeam: LocalTeam) => (
-                        <TeamCard key={localTeam.id} link={`/matchs/${localTeam.id}`} teamName={localTeam.name} logoPath={localTeam.logo} />
+                        <TeamCard key={localTeam.uuid} link={`/matchs/${localTeam.uuid}`} teamName={localTeam.name} logoPath={localTeam.logo} />
                     ))}
                 </section>
             )}

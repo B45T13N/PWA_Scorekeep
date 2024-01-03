@@ -44,12 +44,12 @@ export default function Matchs() {
                     <section className={"matchs-display"}>
                         {data.map((match: Match) => (
                             <MatchCard
-                                key={match.id}
+                                key={match.uuid}
                                 visitorTeamName={match.visitorTeam.name}
                                 category={match.category}
                                 gameDate={match.gameDate}
                                 isHomeMatch={match.isHomeMatch}
-                                gameId={match.id.toString()}
+                                gameId={match.uuid.toString()}
                             />
                         ))}
                     </section>

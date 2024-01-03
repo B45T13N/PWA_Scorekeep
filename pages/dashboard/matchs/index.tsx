@@ -44,7 +44,7 @@ export default function DashboardMatchs() {
         }
     }, [currentPage, startDate, endDate, localTeamId]);
 
-    const handleDeleteGame = (idMatch: number) => {
+    const handleDeleteGame = (idMatch: string) => {
         apiClient.post("/api/games/delete", {"gameId": idMatch})
             .then((response) => {
                 if(response.status === 200){
@@ -57,7 +57,7 @@ export default function DashboardMatchs() {
             });
     }
 
-    const handleCancelGame = (idMatch: number) => {
+    const handleCancelGame = (idMatch: string) => {
         apiClient.post("/api/games/cancel", {"gameId": idMatch})
             .then((response) => {
                 if(response.status === 200){
@@ -70,7 +70,7 @@ export default function DashboardMatchs() {
             });
     }
 
-    const handleConfirmGame = (idMatch: number) => {
+    const handleConfirmGame = (idMatch: string) => {
         apiClient.post("/api/games/confirm", {"gameId": idMatch})
             .then((response) => {
                 if(response.status === 200){
@@ -124,7 +124,7 @@ export default function DashboardMatchs() {
                     </thead>
                     <tbody>
                     {data.map((match: Match) => (
-                        <tr key={match.id}>
+                        <tr key={match.uuid}>
                             <td>{moment(match.gameDate).format('DD/MM/YYYY HH:mm')}</td>
                             <td className={'hidden-s'}>{match.visitorTeam.name}</td>
                             <td>{match.category}</td>
@@ -132,13 +132,13 @@ export default function DashboardMatchs() {
                                 <div className={"action-buttons"}>
                                     {!match.isCancelled ? (
                                             <>
-                                                <Link href={`/dashboard/matchs/edit/${match.id}`}>
+                                                <Link href={`/dashboard/matchs/edit/${match.uuid}`}>
                                                     <button>Modifier</button>
                                                 </Link>
-                                                <button onClick={() => {handleCancelGame(match.id)}}>Annuler</button>
-                                                <button onClick={() => {handleDeleteGame(match.id)}}>Supprimer</button>
+                                                <button onClick={() => {handleCancelGame(match.uuid)}}>Annuler</button>
+                                                <button onClick={() => {handleDeleteGame(match.uuid)}}>Supprimer</button>
                                             </>) :
-                                        (<button onClick={() => {handleConfirmGame(match.id)}}>Confirmer</button>)
+                                        (<button onClick={() => {handleConfirmGame(match.uuid)}}>Confirmer</button>)
                                     }
                                 </div>
                             </td>

@@ -1,5 +1,5 @@
 export interface Volunteer {
-    id: number,
+    uuid: string,
     name: string,
     volunteerTypeId: number,
 }

@@ -8,7 +8,7 @@ interface AuthContextType {
     logout: () => void;
     me: () => void;
     isAuthenticated: boolean;
-    localTeamId: number | undefined;
+    localTeamId: string | undefined;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -28,7 +28,7 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const router = useRouter();
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-    const [localTeamId, setLocalTeamId] = useState<number | undefined>(undefined);
+    const [localTeamId, setLocalTeamId] = useState<string | undefined>(undefined);
 
     useEffect(() => {
         async function loadUserFromCookies() {
@@ -37,7 +37,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                 apiClient.defaults.headers.Authorization = `Bearer ${token}`
                 await apiClient.post('api/me').then((response) =>{
                     setIsAuthenticated(true);
-                    setLocalTeamId(parseInt(Cookies.get('localTeamId') ?? ''));
+                    setLocalTeamId(Cookies.get('localTeamId') ?? '');
                 }).catch(() => {
                     clearCookies();
                     if(router.pathname.startsWith('/dashboard'))
@@ -52,9 +52,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }, [])
 
 
-    const setCookies = (token: string, localTeamId: number) => {
+    const setCookies = (token: string, localTeamId: string) => {
         Cookies.set('token', token, { expires: 1 });
-        Cookies.set('localTeamId', localTeamId.toString(), { expires: 1 });
+        Cookies.set('localTeamId', localTeamId, { expires: 1 });
     };
 
     const clearCookies = () => {

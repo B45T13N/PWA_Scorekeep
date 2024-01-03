@@ -1,5 +1,5 @@
 export interface LocalTeam{
-    id: number,
+    uuid: string,
     name: string,
     logo: string
 }

@@ -40,8 +40,8 @@ export default function Volunteers() {
                     <tbody>
                     {data.map((match: Match) => (
                         <VolunteerSelection
-                            key={match.id}
-                            matchId={match.id}
+                            key={match.uuid}
+                            matchId={match.uuid}
                             visitorTeamName={match.visitorTeam.name}
                             matchCategory={match.category}
                             matchDate={match.gameDate}
@@ -50,10 +50,10 @@ export default function Volunteers() {
                             roomManagers={match.roomManagers}
                             secretaries={match.secretaries}
                             drinkManagers={match.drinkManagers}
-                            roomManagerId={match.roomManager?.id}
-                            timekeeperId={match.timekeeper?.id}
-                            secretaryId={match.secretary?.id}
-                            drinkManagerId={match.drinkManager?.id}
+                            roomManagerId={match.roomManager?.uuid}
+                            timekeeperId={match.timekeeper?.uuid}
+                            secretaryId={match.secretary?.uuid}
+                            drinkManagerId={match.drinkManager?.uuid}
                         />
                     ))}
                     </tbody>

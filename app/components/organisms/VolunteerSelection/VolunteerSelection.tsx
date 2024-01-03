@@ -6,7 +6,7 @@ import apiClient from "../../../services/apiClient";
 import {Volunteer} from "../../../interfaces/Volunteer";
 
 interface VolunteerSelectionProps {
-    matchId: number,
+    matchId: string,
     matchCategory: string,
     visitorTeamName: string,
     matchDate: Date,
@@ -15,10 +15,10 @@ interface VolunteerSelectionProps {
     roomManagers: Array<Volunteer>,
     secretaries: Array<Volunteer>,
     drinkManagers: Array<Volunteer>,
-    timekeeperId?: number,
-    secretaryId?: number,
-    roomManagerId?: number,
-    drinkManagerId?: number,
+    timekeeperId?: string,
+    secretaryId?: string,
+    roomManagerId?: string,
+    drinkManagerId?: string,
 }
 
 export default function VolunteerSelection(props: VolunteerSelectionProps) {
@@ -101,11 +101,11 @@ export default function VolunteerSelection(props: VolunteerSelectionProps) {
                 <div className={"volunteers-grid-display"}>
                     {props.timekeepers.map((timekeeper: Volunteer) => (
                         <RadioInput
-                            key={timekeeper.id}
-                            id={`${timekeeper.id.toString()} ${props.matchId}`}
+                            key={timekeeper.uuid}
+                            id={`${timekeeper.uuid} ${props.matchId}`}
                             name={"timekeepers"}
                             text={timekeeper.name}
-                            isSelected={selectedTimekeeper === `${timekeeper.id.toString()} ${props.matchId}`}
+                            isSelected={selectedTimekeeper === `${timekeeper.uuid} ${props.matchId}`}
                             onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {handleRadioSelect(e)}}
                         />
                     ))}
@@ -115,11 +115,11 @@ export default function VolunteerSelection(props: VolunteerSelectionProps) {
                 <div className={"volunteers-grid-display"}>
                     {props.secretaries.map((secretary: Volunteer) => (
                         <RadioInput
-                            key={secretary.id}
-                            id={`${secretary.id.toString()} ${props.matchId}`}
+                            key={secretary.uuid}
+                            id={`${secretary.uuid} ${props.matchId}`}
                             name={"secretaries"}
                             text={secretary.name}
-                            isSelected={selectedSecretary === `${secretary.id.toString()} ${props.matchId}`}
+                            isSelected={selectedSecretary === `${secretary.uuid} ${props.matchId}`}
                             onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {handleRadioSelect(e)}}
                         />
                     ))}
@@ -129,11 +129,11 @@ export default function VolunteerSelection(props: VolunteerSelectionProps) {
                 <div className={"volunteers-grid-display"}>
                     {props.roomManagers.map((roomManager: Volunteer) => (
                         <RadioInput
-                            key={roomManager.id}
-                            id={`${roomManager.id.toString()} ${props.matchId}`}
+                            key={roomManager.uuid}
+                            id={`${roomManager.uuid} ${props.matchId}`}
                             name={"roomManagers"}
                             text={roomManager.name}
-                            isSelected={selectedRoomManager === `${roomManager.id.toString()} ${props.matchId}`}
+                            isSelected={selectedRoomManager === `${roomManager.uuid} ${props.matchId}`}
                             onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {handleRadioSelect(e)}}
                         />
                     ))}
@@ -143,18 +143,18 @@ export default function VolunteerSelection(props: VolunteerSelectionProps) {
                 <div className={"volunteers-grid-display"}>
                     {props.drinkManagers.map((drinkManager: Volunteer) => (
                         <RadioInput
-                            key={drinkManager.id}
-                            id={`${drinkManager.id.toString()} ${props.matchId}`}
+                            key={drinkManager.uuid}
+                            id={`${drinkManager.uuid} ${props.matchId}`}
                             name={"drinkManagers"}
                             text={drinkManager.name}
-                            isSelected={selectedDrinkManager === `${drinkManager.id.toString()} ${props.matchId}`}
+                            isSelected={selectedDrinkManager === `${drinkManager.uuid} ${props.matchId}`}
                             onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {handleRadioSelect(e)}}
                         />
                     ))}
                 </div>
             </td>
             <td>
-                <button id={props.matchId.toString()} onClick={(e) => handleClickButton(e)}>
+                <button id={props.matchId} onClick={(e) => handleClickButton(e)}>
                     Mettre à jour
                 </button>
             </td>

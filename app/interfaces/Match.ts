@@ -3,7 +3,7 @@ import {VisitorTeam} from "./VisitorTeam";
 import {Volunteer} from "./Volunteer";
 
 export interface Match {
-    id: number,
+    uuid: string,
     address: string,
     category: string,
     gameDate: Date,
