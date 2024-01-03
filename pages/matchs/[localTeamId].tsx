@@ -4,7 +4,6 @@ import apiClient from "@/services/apiClient";
 import {Match} from "@/interfaces/Match";
 import MatchCard from "@/components/organisms/MatchCard/MatchCard";
 import {useRouter} from "next/router";
-import * as process from "process";
 
 export default function Matchs() {
     const router = useRouter();
@@ -22,7 +21,7 @@ export default function Matchs() {
                 .then((result) =>{
                     setData(result.data.data)
                 })
-                .catch((error) => {
+                .catch(() => {
                     setError(true);
                     console.log("Erreur lors de la récupération des matchs");
                 })

@@ -35,7 +35,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             const token = Cookies.get('token')
             if (token) {
                 apiClient.defaults.headers.Authorization = `Bearer ${token}`
-                await apiClient.post('api/me').then((response) =>{
+                await apiClient.post('api/me').then(() =>{
                     setIsAuthenticated(true);
                     setLocalTeamId(Cookies.get('localTeamId') ?? '');
                 }).catch(() => {
@@ -109,7 +109,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                 }
             }
         ).catch(
-            (error) => {
+            () => {
                 clearCookies();
                 setIsAuthenticated(false);
             }

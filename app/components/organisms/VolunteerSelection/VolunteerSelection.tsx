@@ -3,7 +3,7 @@ import RadioInput from "../../atoms/RadioInput/RadioInput";
 import React, {useState} from "react";
 import moment from "moment";
 import apiClient from "../../../services/apiClient";
-import {Volunteer} from "../../../interfaces/Volunteer";
+import {Volunteer} from "@/interfaces/Volunteer";
 
 interface VolunteerSelectionProps {
     matchId: string,

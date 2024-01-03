@@ -3,7 +3,6 @@ import TeamCard from "@/components/atoms/TeamCard/TeamCard";
 import useApi from "@/hooks/useApi/useApi";
 import {useEffect} from "react";
 import {LocalTeam} from "@/interfaces/LocalTeam";
-import {da} from "date-fns/locale";
 
 export default function Teams() {
     const apiUrl = `/api/local-teams`;
