@@ -4,6 +4,7 @@ import {useAuth} from "@/hooks/useAuth/useAuth";
 import {Input} from '@/components/atoms/Input/Input';
 import {Button} from "@/components/atoms/Button/Button";
 import {useRouter} from "next/router";
+import Link from "next/link";
 
 export default function Connexion() {
     const emailErrorMessage :string = "Veuillez vérifier l'email";
@@ -41,18 +42,20 @@ export default function Connexion() {
     };
 
     const handleChangeInput = (inputValue: string, inputType :string) => {
-        switch (inputType) {
-            case "email":
-                !regexEmail(inputValue) ? setErrorMessage(emailErrorMessage) : setErrorMessage("");
-                setEmail(inputValue);
-                break;
-            case "password":
-            case "text":
-                setPassword(inputValue);
-                break;
-            default:
-                console.log("Input non pris en charge");
-        }
+        setTimeout(() => {
+            switch (inputType) {
+                case "email":
+                    !regexEmail(inputValue) ? setErrorMessage(emailErrorMessage) : setErrorMessage("");
+                    setEmail(inputValue);
+                    break;
+                case "password":
+                case "text":
+                    setPassword(inputValue);
+                    break;
+                default:
+                    console.log("Input non pris en charge");
+            }
+        }, 3000)
     }
 
     const regexEmail = (email :string) => {
@@ -75,7 +78,7 @@ export default function Connexion() {
                        type={"password"}
                        onChange={e => handleChangeInput(e.target.value, e.target.type)}/>
                 <div className={"buttons"}>
-                    <Button text={"Mot de passe oublié"} type={undefined}/>
+                    <Link href={"/reset-password"}>Mot de passe oublié</Link>
                     <Button text={"Valider"} type={"submit"}/>
                 </div>
             </form>

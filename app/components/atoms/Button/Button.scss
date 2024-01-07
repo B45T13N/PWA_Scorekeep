@@ -7,10 +7,14 @@ button{
   color: $text-color;
   border-radius: 5px;
   transition: all $transition-duration;
-  border: solid $text-color 1px;
+  border: solid 1px;
   &.valid{
     background: $base-blue;
+    border-color: whitesmoke;
+    color: whitesmoke;
     &:hover{
+      color: $text-color;
+      border-color: $base-blue;
       background: whitesmoke;
     }
   }
