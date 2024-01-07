@@ -15,7 +15,6 @@ describe("RadioInputComponent", () => {
             data: [
                 { id: '1', name: 'Volunteer Type 1' },
                 { id: '2', name: 'Volunteer Type 2' },
-                // ... Ajoutez autant d'éléments que nécessaire pour simuler la réponse réelle
             ],
         });
 

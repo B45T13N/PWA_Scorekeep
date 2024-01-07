@@ -4,6 +4,7 @@ import apiClient from "@/services/apiClient";
 import {Match} from "@/interfaces/Match";
 import MatchCard from "@/components/organisms/MatchCard/MatchCard";
 import {useRouter} from "next/router";
+import {da} from "date-fns/locale";
 
 export default function Matchs() {
     const router = useRouter();
@@ -37,7 +38,7 @@ export default function Matchs() {
                     error ?
                         <p>Erreur lors de la récupération des données</p>
                         :
-                        <p>Pas de matchs disponibles</p>
+                        <p>Pas de matchs disponible.</p>
                 )
                 : (
                     <section className={"matchs-display"}>
