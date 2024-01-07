@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import DashboardMatchs from "@/pages/dashboard/matchs";
-import Router from 'next-router-mock';
 
 jest.mock('next/router', () => require('next-router-mock'));
 jest.mock("../../../app/hooks/useAuth/useAuth", () => ({
