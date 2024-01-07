@@ -31,7 +31,7 @@ article.dashboard-matchs{
           font-size: 17px;
           background: rgba(255, 255, 255, 0.2);
           color: #404040;
-          font-family: Barlow-SemiBold, serif;
+          font-family: Lato-Bold, serif;
           padding: 16px 14px;
           outline: none;
           width: 92%;
@@ -44,7 +44,6 @@ article.dashboard-matchs{
 
   section.content{
     margin: 5px 0;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -85,6 +84,7 @@ article.dashboard-matchs{
     button {
       padding: 5px 10px;
       border: solid 1px $base-blue;
+      border-radius: 5px;
       color: $text-color;
       background: $button-hover;
       cursor: pointer;
@@ -100,6 +100,7 @@ article.dashboard-matchs{
 
       &:not(:disabled):hover {
         background-color: $base-blue;
+        color: whitesmoke;
         border-color: $button-hover;
       }
     }

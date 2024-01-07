@@ -16,7 +16,9 @@ const Dashboard: NextPage = () => {
 
     return (
         <section className="dashboard">
-            <h2>Panneau d'administration</h2>
+            <div>
+                <h2>Panneau d'administration</h2>
+            </div>
             <div className="dashboard-links">
                 {dashboardLinks.map((obj, key) =>
                     <DashboardLink key={key} link={obj.link} innerText={obj.innerText}/>

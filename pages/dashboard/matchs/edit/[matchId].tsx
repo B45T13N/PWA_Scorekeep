@@ -8,6 +8,7 @@ import apiClient from "@/services/apiClient";
 import {Input} from "@/components/atoms/Input/Input";
 import Link from "next/link";
 import {useAuthRedirect} from "@/hooks/useAuthRedirect/useAuthRedirect";
+import moment from "moment";
 
 export default function UpdateMatch() {
     const router = useRouter();
@@ -113,7 +114,7 @@ export default function UpdateMatch() {
                         ariaLabelledBy={"gameDate"}
                         name={"gameDate"}
                         showTimeSelect
-                        minDate={new Date()}
+                        minDate={moment().add(1,'days').toDate()}
                         minTime={new Date(0, 0, 0, 8, 30)}
                         maxTime={new Date(0, 0, 0, 22, 0)}
                         selected={date}

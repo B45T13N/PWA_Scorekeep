@@ -2,15 +2,16 @@
 
 main.content{
   height: 100%;
-  min-height: 73vh;
+  min-height: calc(90vh - 80px);
   width: 100%;
-  margin: auto;
+  margin-top: 80px;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .bm-overlay{
+  margin-top: -3px;
+
 }
 
 .bm-menu{
@@ -21,15 +22,11 @@ main.content{
   height: 100%;
   font-size: 2vw;
   background: $base-blue;
+  margin-top: -3px;
   .bm-item-list a{
-    padding: 0.8rem;
-  }
-}
-
-.bm-item-list{
-
-  a{
+    color: whitesmoke !important;
     font-size: 25px;
+    padding: 0.8rem;
   }
 }
 

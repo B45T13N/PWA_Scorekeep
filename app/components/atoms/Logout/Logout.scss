@@ -6,7 +6,8 @@ a.navlink{
   position: relative;
   padding-bottom: 10px;
   color: $text-color;
-  font-family: Barlow-SemiBoldItalic, serif;
+  font-family: Lato-Regular, serif;
+  font-weight: bold;
   &::after {
     bottom: 0;
     content: "";

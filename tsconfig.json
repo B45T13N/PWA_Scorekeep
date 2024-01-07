@@ -39,7 +39,7 @@
         "app/hooks/*"
       ],
       "@/images/*": [
-        "public/images/*"
+        "app/images/*"
       ],
       "@/styles/*": [
         "styles/*"

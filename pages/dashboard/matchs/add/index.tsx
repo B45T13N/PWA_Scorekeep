@@ -124,8 +124,8 @@ export default function AddMatch() {
                 <fieldset>
                     <legend>Détails du match : </legend>
                     <Switch
-                        colorOne={"#17CFE3"}
-                        colorTwo={"#CCBCAD"}
+                        colorOne={"#0240b7"}
+                        colorTwo={"#c2c2c2"}
                         isOn={isHomeMatch}
                         handleToggle={handleSwitchChange}
                         textOne={"A domicile"}

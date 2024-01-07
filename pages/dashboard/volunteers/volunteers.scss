@@ -43,17 +43,20 @@ article.volunteers {
     td:last-child, th:last-child{
 
       button{
+        font-family: Lato-Bold, serif;
         margin: 5px;
         padding: 5px 10px;
-        border: solid 1px #17CFE3;
+        border-radius: 5px;
+        border: solid 1px $base-blue;
         color: #404040;
         background: whitesmoke;
         cursor: pointer;
         transition: all 0.4s;
 
         &:hover{
-          background-color: #17CFE3;
+          background-color: $base-blue;
           border-color: whitesmoke;
+          color: whitesmoke;
         }
       }
 

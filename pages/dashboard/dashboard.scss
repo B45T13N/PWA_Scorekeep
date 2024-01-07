@@ -1,11 +1,15 @@
 @import "styles/global";
 
 section.dashboard{
-  width: 100%;
-  min-height: inherit;
+  margin: 15px auto;
+  padding: 20px;
+  width: 80%;
   display: flex;
   flex-direction: column;
-  margin: auto 10px;
+  background: #efefef;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.25);
+
   h2{
     height: 10%;
     text-align: center;
@@ -17,6 +21,7 @@ section.dashboard{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-row-gap: 15px;
+    grid-column-gap: 15px;
   }
 
 }

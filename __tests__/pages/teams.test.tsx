@@ -24,7 +24,7 @@ describe('Teams', () => {
             <Teams />);
 
         // Assert that loading text is displayed
-        expect(screen.getByText('Les clubs')).toBeInTheDocument();
+        expect(screen.getByText('Les équipes')).toBeInTheDocument();
     });
 
     it('renders the component with error state', () => {
@@ -60,7 +60,7 @@ describe('Teams', () => {
             <Teams />
         );
 
-        expect(screen.getByText('Les clubs')).toBeInTheDocument();
+        expect(screen.getByText('Les équipes')).toBeInTheDocument();
         expect(screen.getByText('Team name')).toBeInTheDocument();
     });
 });

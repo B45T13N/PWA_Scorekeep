@@ -2,6 +2,7 @@
 
 div.radio-input{
   width: 100%;
+  font-family: Lato-Bold, serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,6 +25,7 @@ div.radio-input{
 
   &.selected {
     background-color: $base-blue;
+    color: whitesmoke;
     border-color: $card-background;
   }
 

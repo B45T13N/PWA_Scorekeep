@@ -81,7 +81,7 @@
 .close-btn {
   cursor: pointer;
   padding: 4px 8px;
-  border-radius: 8px;
+  border-radius: 5px;
   border: none;
   font-size: 18px;
   background: white;
@@ -100,34 +100,37 @@
 }
 
 .confirm-btn {
-  font-family: Barlow, serif;
+  font-family: Lato-Regular, serif;
   margin-top: 10px;
   cursor: pointer;
   padding: 11px 28px;
-  border-radius: 12px;
+  border-radius: 5px;
   font-size: 0.8rem;
-  border: none;
-  background: #17CFE3;
+  border: 1px solid whitesmoke;
+  background: $base-blue;
+  color:whitesmoke;
   transition: all 0.25s ease;
 
   &:hover {
-    color: $button-hover;
-    background: #106775;
+    color: $text-color;
+    border: 1px solid $base-blue;
+    background: whitesmoke;
   }
 }
 
 .cancel-btn {
-  font-family: Barlow, serif;
+  font-family: Lato-Regular, serif;
   margin-top: 10px;
   cursor: pointer;
   padding: 11px 28px;
-  border-radius: 12px;
+  border-radius: 5px;
   font-size: 0.8rem;
-  border: none;
+  border: 1px solid whitesmoke;
   background: $button-error-color;
   transition: all 0.25s ease;
 
   &:hover {
+    border: 1px solid $button-error-color;
     box-shadow: none;
     transform: none;
     background: whitesmoke;

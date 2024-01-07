@@ -25,7 +25,7 @@ article.add-match{
         font-size: 17px;
         background: rgba(255, 255, 255, 0.2);
         color: #404040;
-        font-family: Barlow-SemiBold, serif;
+        font-family: Lato-Bold, serif;
         padding: 16px 14px;
         outline: none;
         width: 92%;
@@ -62,7 +62,8 @@ article.add-match{
       button{
         margin: 5px 0;
         padding: 5px 10px;
-        border: solid 1px #17CFE3;
+        border: solid 1px $base-blue;
+        border-radius: 5px;
         color: #404040;
         background: whitesmoke;
         cursor: pointer;
@@ -70,7 +71,8 @@ article.add-match{
         font-weight: bold;
 
         &:hover{
-          background-color: #17CFE3;
+          background-color: $base-blue;
+          color: whitesmoke;
           border-color: whitesmoke;
         }
       }

@@ -6,6 +6,7 @@ import moment from "moment";
 import Select from "../../atoms/Select/Select";
 import SelectOptionsProps from "../../../interfaces/SelectOptionsProps";
 import Image from "next/image";
+import Close from '@/images/x.svg';
 
 interface RegistrationVolunteerModalProps {
     isOpen: boolean;
@@ -27,7 +28,7 @@ export default function RegistrationVolunteerModal(props: RegistrationVolunteerM
     useEffect(() => {
         apiClient.get('/api/volunteer-types/show-all')
             .then(result => {
-                setSelectOptions(result.data.data);
+                setSelectOptions(result.data);
             })
             .catch(error => {
                 console.log(error);
@@ -87,7 +88,7 @@ export default function RegistrationVolunteerModal(props: RegistrationVolunteerM
                             <div className={"close-btn"} onClick={handleClose}>
                                 <Image
                                     alt={"Fermer la fenêtre"}
-                                    src={'@/images/x.svg'}
+                                    src={Close}
                                     height={32}
                                     width={32}
                                     />

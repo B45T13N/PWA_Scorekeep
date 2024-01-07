@@ -2,28 +2,28 @@
 @import "normalize.css";
 
 @font-face {
-  font-family: "Barlow";
-  src: local("Barlow-Regular"), url("../public/fonts/Barlow-Regular.ttf") format("truetype");
+  font-family: "Lato-Regular";
+  src: local("Lato-Regular"), url("../public/fonts/Lato-Regular.ttf") format("truetype");
 }
 @font-face {
-  font-family: "Barlow-SemiBold";
-  src: local("Barlow-SemiBold"), url("../public/fonts/Barlow-SemiBold.ttf") format("truetype");
+  font-family: "Lato-Bold";
+  src: local("Lato-Bold"), url("../public/fonts/Lato-Bold.ttf") format("truetype");
 }
 @font-face {
-  font-family: "Barlow-SemiBoldItalic";
-  src: local("Barlow-SemiBoldItalic"), url("../public/fonts/Barlow-SemiBoldItalic.ttf") format("truetype");
+  font-family: "Lato-Italic";
+  src: local("Lato-Italic"), url("../public/fonts/Lato-Italic.ttf") format("truetype");
 }
 
 div.page {
   margin: 0;
-  min-height: 100vh;
-  font-family: Barlow, serif;
+  min-height: calc(90vh - 80px);;
+  font-family: Lato-Regular, serif;
   color: $text-color;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
   button{
-    font-family: Barlow, serif;
+    font-family: Lato-Bold, serif;
   }
 
   a{
