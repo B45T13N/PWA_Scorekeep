@@ -1,0 +1,27 @@
+@import "styles/variables";
+
+div.reset-link-form{
+  margin-top: 100px;
+  width: min(80vw, 500px);
+  height: fit-content;
+  padding: 20px 0;
+  background: $card-background;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+
+  div.error{
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    div.input-container{
+      margin: 20px 0;
+    }
+  }
+
+}

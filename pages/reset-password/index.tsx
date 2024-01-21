@@ -1,7 +1,9 @@
-import './reste-password.scss'
+import './reset-password.scss'
 import { useState, FormEvent } from 'react';
 import {Input} from "@/components/atoms/Input/Input";
 import {Button} from "@/components/atoms/Button/Button";
+import apiClient from "@/services/apiClient";
+import {useRouter} from "next/router";
 
 const ResetPasswordPage: React.FC = () => {
     const emailErrorMessage :string = "Veuillez vérifier l'email.";
@@ -9,13 +11,21 @@ const ResetPasswordPage: React.FC = () => {
     const [email, setEmail] = useState('');
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [sendingMessage, setSendingMessage] = useState<string>('');
+    const router = useRouter();
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
 
-
+        await apiClient.post('/api/password/reset-link', { email }).catch((error) => {
+            console.log(error)
+            setErrorMessage(error.response.data.status);
+        });
 
         setSendingMessage(emailSendingMessage);
+
+        setTimeout(() => {
+            router.push("/");
+        }, 3000);
     };
 
     const handleChangeInput = (inputValue: string, inputType :string) => {
@@ -28,7 +38,7 @@ const ResetPasswordPage: React.FC = () => {
                 default:
                     console.log("Input non pris en charge");
             }
-        }, 3000);
+        }, 0);
     }
 
     const regexEmail = (email :string) => {

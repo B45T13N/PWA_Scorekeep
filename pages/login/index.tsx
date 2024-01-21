@@ -55,7 +55,7 @@ export default function Connexion() {
                 default:
                     console.log("Input non pris en charge");
             }
-        }, 3000)
+        }, 0)
     }
 
     const regexEmail = (email :string) => {

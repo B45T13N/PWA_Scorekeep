@@ -11,7 +11,7 @@ interface InputProps {
 
 export function Input(props: InputProps) {
     const label :string = props.field.charAt(0).toUpperCase() + props.field.substring(1, props.field.length)
-    const name :string = props.field !== "mot de passe" ? props.field : "password";
+    const name :string = props.field.includes("mot de passe") ? "password" :  props.field;
     const [classes, setClasses] = useState<string>("")
     const [value, setValue] = useState<string>(props.value || "")
     const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
