@@ -4,7 +4,6 @@ import {Input} from "@/components/atoms/Input/Input";
 import {Button} from "@/components/atoms/Button/Button";
 import apiClient from "@/services/apiClient";
 import {useRouter} from "next/router";
-import {useSearchParams} from "next/navigation";
 
 const ResetPasswordPage: React.FC = () => {
     const passwordErrorMessage :string = "Les mots de passes ne sont pas identiques.";
@@ -67,14 +66,6 @@ const ResetPasswordPage: React.FC = () => {
                     console.log("Input non pris en charge");
             }
         }, 0);
-    }
-
-    const checkPasswords = (password: string, confirmedPassword: string) => {
-        if(password !== confirmedPassword) {
-            setErrorMessage(passwordErrorMessage);
-        } else {
-            setErrorMessage("");
-        }
     }
 
     return (
