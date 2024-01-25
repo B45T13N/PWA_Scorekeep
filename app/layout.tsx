@@ -8,6 +8,7 @@ import {NavlinkObject} from "./interfaces/NavlinkObject";
 import {ReactNode, useEffect, useState} from "react";
 import Link from "next/link";
 import {useRouter} from "next/router";
+import Head from "next/head";
 
 interface LayoutProps {
     children: ReactNode;
@@ -50,25 +51,32 @@ export default function Layout(props: LayoutProps) {
     }
 
     return (
-        <div className="page">
-            <div id="slide">
-                <Menu isOpen={menuOpen} onStateChange={handleStateChange}>
-                    {navlinks.map((obj, key) =>
-                        <Link key={key} href={obj.link}>{obj.innerText}</Link>
-                    )}
-                    {isAuthenticated &&
-                        <Link href="/dashboard">Dashboard</Link>
-                    }
-                    {isAuthenticated &&
-                        <Link href="#" onClick={logout}>Se déconnecter</Link>
-                    }
-                </Menu>
+        <>
+            <Head>
+                <title>Scorekeep</title>
+                <meta charSet="utf-8"/>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
+            </Head>
+            <div className="page">
+                <div id="slide">
+                    <Menu isOpen={menuOpen} onStateChange={handleStateChange}>
+                        {navlinks.map((obj, key) =>
+                            <Link key={key} href={obj.link}>{obj.innerText}</Link>
+                        )}
+                        {isAuthenticated &&
+                            <Link href="/dashboard">Dashboard</Link>
+                        }
+                        {isAuthenticated &&
+                            <Link href="#" onClick={logout}>Se déconnecter</Link>
+                        }
+                    </Menu>
+                </div>
+                <Header />
+                <main className="content">
+                    {props.children}
+                </main>
+                <Footer />
             </div>
-            <Header />
-            <main className="content">
-                {props.children}
-            </main>
-            <Footer />
-        </div>
-    )
+        </>
+            )
 }
