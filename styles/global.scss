@@ -36,7 +36,6 @@ div.page {
 
 @media(max-width: $layout-breakpoint-small){
   header.app-header{
-    position: sticky;
     top: 0;
     z-index: 4;
   }
